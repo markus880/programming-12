@@ -1,6 +1,7 @@
 void game() {
   background(255);
   fill(255);
+  image(grass,0,0);
   strokeWeight(1);
   fill(255, 0, 0);
   circle(p1x, p1y, 60);
@@ -11,13 +12,17 @@ void game() {
   text(p1s/60, 400, 100);
   text(p2s/60, 1040, 100);
   
- 
-obs(width/2, 200,300);
+fill(157,120,44);
+obs(width/2, 220,300);
 obs(250,600,280);
   obs(width-250,600,280);
   obs(500,450,80);
   obs(width-500,450,80);
-    
+     image(bar,460,410);
+      image(bar,width-540,410);
+      image(hut,80,430);
+         image(hut,width-410,430);
+         image(well,width/2-165,220-165);
 
   if (noit==true) {
     if (dist(p1x, p1y, width/2, height/2)<40) {

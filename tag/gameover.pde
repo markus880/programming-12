@@ -11,5 +11,14 @@ if(p1ws==true){
 }
 
 void gameoverclicks(){
-  
+  mode=intro;
+   p1x=50;
+  p1y= p2y=420;
+  p2x= 1390;
+  noit=true;
+  p1s=p2s=0;
+  w1=w2=201;
+  p1w=p2w=false;
+  p1s=0;
+  p2s=0;
 }
