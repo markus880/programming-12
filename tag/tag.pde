@@ -2,10 +2,10 @@ int mode;
 final int intro=0;
 final int game=1;
 final int gameover= 2;
-float p1x, p1y, p2x, p2y, w1, w2;
+float p1x, p1y, p2x, p2y, w1, w2,m,t,r1,r2,m1,q;
 int p1s, p2s;
 PImage tag,bar,hut, well, grass;
-boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey, noit, p1w, p2w, p1ws, p2ws;
+boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey, noit, p1w, p2w, p1ws, p2ws,mv1,mv2;
 
 
 void setup() {
@@ -26,6 +26,8 @@ void setup() {
   noit=true;
   p1s=p2s=0;
   w1=w2=201;
+  m=7;
+  q=1;
 }
 
 
@@ -54,4 +56,27 @@ void obs(int x, int y, int r) {
     p2x= p2x+.15*(p2x-x);
     p2y= p2y+0.15*(p2y-y);
   }
+}
+
+void p1(float x, float y){
+  pushMatrix();
+translate(x,y);
+rotate(r1);
+  circle(0,0,60);
+  ellipse(m,20,50,20);
+  ellipse(-m,-20,50,20);
+   t=t+1;
+  popMatrix();
+  
+}
+void p2(float x, float y){
+  pushMatrix();
+translate(x,y);
+rotate(r2);
+  circle(0,0,60);
+  ellipse(m,20,50,20);
+  ellipse(-m,-20,50,20);
+   t=t+1;
+  popMatrix();
+  
 }

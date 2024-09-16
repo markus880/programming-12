@@ -1,12 +1,20 @@
 void game() {
+  t++;
+   if(t==14){
+    m=m*-1;
+    t=0;
+  }
   background(255);
+
   fill(255);
   image(grass,0,0);
   strokeWeight(1);
   fill(255, 0, 0);
-  circle(p1x, p1y, 60);
+ p1(p1x, p1y);
   fill(0, 0, 255);
-  circle(p2x, p2y, 60);
+
+  p2(p2x, p2y);
+
   textSize(100);
   fill(0);
   text(p1s/60, 400, 100);
@@ -23,6 +31,7 @@ obs(250,600,280);
       image(hut,80,430);
          image(hut,width-410,430);
          image(well,width/2-165,220-165);
+            
 
   if (noit==true) {
     if (dist(p1x, p1y, width/2, height/2)<40) {
@@ -73,7 +82,7 @@ obs(250,600,280);
 
 
   if (p1w==true) {
-    if ( wkey == true) p1y = p1y - 3;
+    if ( wkey == true)p1y = p1y - 3;
     if ( skey == true) p1y = p1y + 3;
     if ( akey == true) p1x = p1x - 3;
     if ( dkey == true) p1x = p1x + 3;
@@ -136,6 +145,83 @@ if(p2y>810){
   downkey=false;
   p2y=810;
 }
+
+
+
+if(wkey==true && dkey==true){
+  r1= 0.785+1.57;
+  mv1=true;
+  
+}else if(skey==true && dkey==true){
+  r1= 0.785;
+    mv1=true;
+  
+}else if(wkey==true && akey==true){
+  r1= 0.785;
+    mv1=true;
+  
+}else if(wkey== true){
+  r1=1.57;
+    mv1=true;
+  
+}else if(skey==true && akey==true){
+  r1= 0.785+1.57;
+    mv1=true;
+  
+}
+else if(skey== true){
+  r1=1.57;
+    mv1=true;
+  
+}
+else if(akey== true){
+  r1=0;
+    mv1=true;
+  
+}
+else if(dkey== true){
+  r1=0;
+  mv1=true;
+  
+}else if(wkey==false && skey==false && akey==false && dkey==false){
+
+}
+
+
+
+
+if(upkey==true && rkey==true){
+  r2= 0.785+1.57;
+  
+}else if(downkey==true && rkey==true){
+  r2= 0.785;
+  
+}else if(upkey==true && lkey==true){
+  r2= 0.785;
+  
+}else if(upkey== true){
+  r2=1.57;
+  
+}else if(downkey==true && lkey==true){
+  r2= 0.785+1.57;
+  
+}
+else if(downkey== true){
+  r2=1.57;
+  
+}
+else if(lkey== true){
+  r2=0;
+  
+}
+else if(rkey== true){
+  r2=0;
+  
+}
+
+
+
+
 
 
 
