@@ -1,4 +1,5 @@
 void intro(){
+  intros.play();
   image(tag,0,0,1440,840);
   textAlign(CENTER,CENTER);
   fill(0);

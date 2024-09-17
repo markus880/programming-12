@@ -5,7 +5,8 @@ void game() {
     t=0;
   }
   background(255);
-
+games.play();
+intros.pause();
   fill(255);
   image(grass,0,0);
   strokeWeight(1);
@@ -37,10 +38,12 @@ obs(250,600,280);
     if (dist(p1x, p1y, width/2, height/2)<40) {
       noit=false;
       p1w=true;
+      chaching.play();
     }
     if (dist(p2x, p2y, width/2, height/2)<40) {
       noit=false;
       p2w=true;
+        chaching.play();
     }
 
     if (noit==true) {
@@ -62,7 +65,8 @@ obs(250,600,280);
     w1=0;
     p1x= p1x+20*(p1x/20-p2x/20);
      p1y= p1y+20*(p1y/20-p2y/20);
-
+     boing.rewind();
+     boing.play();
   }
 
   if (dist(p1x, p1y, p2x, p2y)<60 && p2w==true && w1>100) {
@@ -71,6 +75,8 @@ obs(250,600,280);
     w2=0;
        p2x= p2x+20*(p2x/20-p1x/20);
      p2y= p2y+20*(p2y/20-p1y/20);
+     boing.rewind();
+     boing.play();
      
   }
 
@@ -184,7 +190,8 @@ else if(dkey== true){
   mv1=true;
   
 }else if(wkey==false && skey==false && akey==false && dkey==false){
-
+mv1=false;
+m=0;
 }
 
 
@@ -192,39 +199,48 @@ else if(dkey== true){
 
 if(upkey==true && rkey==true){
   r2= 0.785+1.57;
+    mv2=true;
   
 }else if(downkey==true && rkey==true){
   r2= 0.785;
-  
+   mv2=true;
 }else if(upkey==true && lkey==true){
   r2= 0.785;
-  
+   mv2=true;
 }else if(upkey== true){
   r2=1.57;
-  
+   mv2=true;
 }else if(downkey==true && lkey==true){
   r2= 0.785+1.57;
-  
+   mv2=true;
 }
 else if(downkey== true){
   r2=1.57;
-  
+   mv2=true;
 }
 else if(lkey== true){
   r2=0;
-  
+   mv2=true;
 }
 else if(rkey== true){
   r2=0;
-  
+  mv2=true; 
+}else{
+  mv2=false;
+  m1=0;
 }
 
 
 
 
+if(p1s/60==27){
+  count.play();
+}
 
 
-
+if(p2s/60==27){
+  count.play();
+}
 
 
 
