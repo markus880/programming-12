@@ -1,7 +1,7 @@
 void game() {
   t++;
    if(t==14){
-    m=m*-1;
+    armp1=armp1*-1;
     t=0;
   }
   background(255);
@@ -18,8 +18,8 @@ intros.pause();
 
   textSize(100);
   fill(0);
-  text(p1s/60, 400, 100);
-  text(p2s/60, 1040, 100);
+  text(p1score/60, 400, 100);
+  text(p2score/60, 1040, 100);
   
 fill(157,120,44);
 obs(width/2, 220,300);
@@ -37,12 +37,12 @@ obs(250,600,280);
   if (noit==true) {
     if (dist(p1x, p1y, width/2, height/2)<40) {
       noit=false;
-      p1w=true;
+      p1winning=true;
       chaching.play();
     }
     if (dist(p2x, p2y, width/2, height/2)<40) {
       noit=false;
-      p2w=true;
+      p2winning=true;
         chaching.play();
     }
 
@@ -52,27 +52,27 @@ obs(250,600,280);
   }
 
 
-  if (p1w==true) {
-    p1s++;
+  if (p1winning==true) {
+    p1score++;
   }
-  if (p2w==true) {
-    p2s=p2s+1;
+  if (p2winning==true) {
+    p2score=p2score+1;
   }
 
-  if (dist(p1x, p1y, p2x, p2y)<60 && p1w==true && w2>100) {
-    p1w=false;
-    p2w=true;
-    w1=0;
+  if (dist(p1x, p1y, p2x, p2y)<60 && p1winning==true && walkp2>100) {
+    p1winning=false;
+    p2winning=true;
+    walkp1=0;
     p1x= p1x+20*(p1x/20-p2x/20);
      p1y= p1y+20*(p1y/20-p2y/20);
      boing.rewind();
      boing.play();
   }
 
-  if (dist(p1x, p1y, p2x, p2y)<60 && p2w==true && w1>100) {
-    p2w=false;
-    p1w=true;
-    w2=0;
+  if (dist(p1x, p1y, p2x, p2y)<60 && p2winning==true && walkp1>100) {
+    p2winning=false;
+    p1winning=true;
+    walkp2=0;
        p2x= p2x+20*(p2x/20-p1x/20);
      p2y= p2y+20*(p2y/20-p1y/20);
      boing.rewind();
@@ -83,30 +83,30 @@ obs(250,600,280);
   //println(w1,w2);
  //ballvx =  3*(ballx/20 - leftx/20);
     //ballvy = 3*(bally/20- lefty/20) ;
-  w1++;
-  w2++;
+  walkp1++;
+  walkp2++;
 
 
-  if (p1w==true) {
+  if (p1winning==true) {
     if ( wkey == true)p1y = p1y - 3;
     if ( skey == true) p1y = p1y + 3;
     if ( akey == true) p1x = p1x - 3;
     if ( dkey == true) p1x = p1x + 3;
   }
 
-  if (p1w==false && w1>100) {
+  if (p1winning==false && walkp1>100) {
     if ( wkey == true) p1y = p1y - 4;
     if ( skey == true) p1y = p1y + 4;
     if ( akey == true) p1x = p1x - 4;
     if ( dkey == true) p1x = p1x + 4;
   }
-  if (p2w==true) {
+  if (p2winning==true) {
     if ( upkey == true) p2y = p2y - 3;
     if ( downkey == true) p2y = p2y + 3;
     if ( lkey == true) p2x = p2x - 3;
     if ( rkey == true) p2x = p2x + 3;
   }
-  if (p2w==false && w2> 100) {
+  if (p2winning==false && walkp2> 100) {
     if ( upkey == true) p2y = p2y - 4;
     if ( downkey == true) p2y = p2y + 4;
     if ( lkey == true) p2x = p2x - 4;
@@ -155,90 +155,90 @@ if(p2y>810){
 
 
 if(wkey==true && dkey==true){
-  r1= 0.785+1.57;
-  mv1=true;
+  rotatep1= 0.785+1.57;
+  movep1=true;
   
 }else if(skey==true && dkey==true){
-  r1= 0.785;
-    mv1=true;
+  rotatep1= 0.785;
+    movep1=true;
   
 }else if(wkey==true && akey==true){
-  r1= 0.785;
-    mv1=true;
+  rotatep1= 0.785;
+    movep1=true;
   
 }else if(wkey== true){
-  r1=1.57;
-    mv1=true;
+  rotatep1=1.57;
+    movep1=true;
   
 }else if(skey==true && akey==true){
-  r1= 0.785+1.57;
-    mv1=true;
+  rotatep1= 0.785+1.57;
+    movep1=true;
   
 }
 else if(skey== true){
-  r1=1.57;
-    mv1=true;
+  rotatep1=1.57;
+    movep1=true;
   
 }
 else if(akey== true){
-  r1=0;
-    mv1=true;
+  rotatep1=0;
+    movep1=true;
   
 }
 else if(dkey== true){
-  r1=0;
-  mv1=true;
+  rotatep1=0;
+  movep1=true;
   
 }else if(wkey==false && skey==false && akey==false && dkey==false){
-mv1=false;
-m=0;
+movep1=false;
+armp1=0;
 }
 
 
 
 
 if(upkey==true && rkey==true){
-  r2= 0.785+1.57;
-    mv2=true;
+  rotatep2= 0.785+1.57;
+    movep2=true;
   
 }else if(downkey==true && rkey==true){
-  r2= 0.785;
-   mv2=true;
+  rotatep2= 0.785;
+   movep2=true;
 }else if(upkey==true && lkey==true){
-  r2= 0.785;
-   mv2=true;
+  rotatep2= 0.785;
+   movep2=true;
 }else if(upkey== true){
-  r2=1.57;
-   mv2=true;
+  rotatep2=1.57;
+   movep2=true;
 }else if(downkey==true && lkey==true){
-  r2= 0.785+1.57;
-   mv2=true;
+  rotatep2= 0.785+1.57;
+   movep2=true;
 }
 else if(downkey== true){
-  r2=1.57;
-   mv2=true;
+  rotatep2=1.57;
+   movep2=true;
 }
 else if(lkey== true){
-  r2=0;
-   mv2=true;
+  rotatep2=0;
+   movep2=true;
 }
 else if(rkey== true){
-  r2=0;
-  mv2=true; 
+  rotatep2=0;
+  movep2=true; 
 }else{
-  mv2=false;
-  m1=0;
+  movep2=false;
+  armp2=0;
 }
 
 
 
 
-if(p1s/60==27){
+if(p1score/60==27){
   count.play();
 }
 
 
-if(p2s/60==27){
+if(p2score/60==27){
   count.play();
 }
 
@@ -251,13 +251,13 @@ if(p2s/60==27){
 
 
 
-  if (p1s/60==30) {
-    p1ws=true;
+  if (p1score/60==30) {
+    p1wins=true;
     mode=gameover;
   }
 
-  if (p2s/60==30) {
-    p2ws=true;
+  if (p2score/60==30) {
+    p2wins=true;
     mode=gameover;
   }
 }

@@ -12,10 +12,10 @@ int mode;
 final int intro=0;
 final int game=1;
 final int gameover= 2;
-float p1x, p1y, p2x, p2y, w1, w2,m,t,r1,r2,m1,q,k,k1;
-int p1s, p2s;
+float p1x, p1y, p2x, p2y, walkp1, walkp2,armp1,t,rotatep1,rotatep2,armp2,q,k,k1;
+int p1score, p2score;
 PImage tag,bar,hut, well, grass;
-boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey, noit, p1w, p2w, p1ws, p2ws,mv1,mv2;
+boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey, noit, p1winning, p2winning, p1wins, p2wins,movep1,movep2;
 
 
 void setup() {
@@ -34,12 +34,12 @@ void setup() {
   p1y= p2y=420;
   p2x= 1390;
   noit=true;
-  p1s=p2s=0;
-  w1=w2=201;
-  m=0;
+  p1score=p2score=0;
+  walkp1=walkp2=201;
+  armp1=0;
   q=1;
   k=2;
-  m1=0;
+  armp2=0;
   k1=2;
   
    minim = new Minim(this);
@@ -83,16 +83,16 @@ void obs(int x, int y, int r) {
 void p1(float x, float y){
   pushMatrix();
 translate(x,y);
-rotate(r1);
+rotate(rotatep1);
   circle(0,0,60);
-  ellipse(m,20,50,20);
-  ellipse(-m,-20,50,20);
+  ellipse(armp1,20,50,20);
+  ellipse(-armp1,-20,50,20);
    t=t+1;
-   if(mv1==true){
-   m=m-k;
-   if(m<-8){
+   if(movep1==true){
+   armp1=armp1-k;
+   if(armp1<-8){
      k=k*-1;
-   }if(m>8){
+   }if(armp1>8){
      k=k*-1;
    }
    }
@@ -102,16 +102,16 @@ rotate(r1);
 void p2(float x, float y){
   pushMatrix();
 translate(x,y);
-rotate(r2);
+rotate(rotatep2);
   circle(0,0,60);
-  ellipse(m1,20,50,20);
-  ellipse(-m1,-20,50,20);
+  ellipse(armp2,20,50,20);
+  ellipse(-armp2,-20,50,20);
   
-     if(mv2==true){
-   m1=m1-k1;
-   if(m1<-8){
+     if(movep2==true){
+   armp2=armp2-k1;
+   if(armp2<-8){
      k1=k1*-1;
-   }if(m1>8){
+   }if(armp2>8){
      k1=k1*-1;
    }
    }
