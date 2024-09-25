@@ -1,61 +1,103 @@
 class button {
   //intsance variable
   float x, y, w, h;
-  boolean clicked;
+  boolean clicked, in;
   color highlight, normal;
-  String text; 
+  String text;
+  PImage cake;
+
 
   //constructor
 
-  button(String t, int _x, int _y, int _w, int _h, color norm, color high, boolean clicked) {
-   
+  button(PImage c , int _x, int _y, int _w, int _h, color norm, color high, boolean clicked) {
+
     x= _x;
-    y=_y; 
+    y=_y;
     w= _w;
-    h= _h; 
-    text= t;
-highlight= high;
-normal= norm;
-clicked= false;
+    h= _h;
+    highlight= high;
+    normal= norm;
+    clicked= false;
+    cake= c;
+    text = "";
+  }
+  
+   button(String t , int _x, int _y, int _w, int _h, color norm, color high, boolean clicked) {
+
+    x= _x;
+    y=_y;
+    w= _w;
+    h= _h;
+    highlight= high;
+    normal= norm;
+    clicked= false;
+   text=t;
+    cake = null;
   }
 
   //behavior
+
+
+
+
+
   void show() {
-  rectMode(CENTER);
-  if (mouseX>x-w/2 && mouseX< x+w/2 && y+h/2>mouseY &&mouseY> y-h/2){
-    fill(highlight);
-  }else{
-    fill(normal);
+
+    i();
+    rec();
+    cli();
+    if (cake != null)  tex();
+    else{
+      txt();
+    }
   }
-  stroke(0);
-  strokeWeight(4);
-  rect(x,y,w,h,30);
-  
-  clicked=false;
-  textAlign(CENTER,CENTER);
-   if (mouseX>x-w/2 && mouseX< x+w/2 && y+h/2>mouseY &&mouseY> y-h/2){
-  fill(normal);
-     
-      }else{
-        fill(highlight);
-      }
-      textSize(w/4);
-      text(text,x,y);
-      
-      if(mouseReleased && mouseX>x-w/2 && mouseX< x+w/2 && y+h/2>mouseY &&mouseY> y-h/2){
-      clicked= true;
-      }else{
-        clicked=false;
-      }
-     if(clicked==true){
-       nims=normal;
-     }
-      
+  void rec() {
+
+    rectMode(CENTER);
+    if (in==true) {
+      fill(highlight);
+    } else {
+      fill(normal);
+    }
+    stroke(0);
+    strokeWeight(4);
+    rect(x, y, w, h, 30);
+  }
+  void i() {
+    if (mouseX>x-w/2 && mouseX< x+w/2 && y+h/2>mouseY &&mouseY> y-h/2) {
+      in=true;
+    } else {
+      in=false;
+    }
   }
 
-  void act() {
+  void tex() {
+   image(bat,x-w/2+20,y-h/2+20,w-40,h-40);
+  }
+
+  void cli() {
+    if (mouseReleased && in==true) {
+      clicked= true;
+    } else {
+      clicked=false;
+    }
+    if (clicked==true) {
+      nims=normal;
+    }
+    
  
-    
-    
+  }
+
+
+
+void txt(){
+  textAlign(CENTER,CENTER);
+  if(in==true) fill(normal);
+  if(in==false) fill(highlight);
+  textSize(100);
+  text(text,x,y);
+  
+}
+  void act() {
   }
 }
