@@ -23,7 +23,11 @@ void draw() {
     m.act();
     m.showbody();
     m.showlines();
+    if(m.alive == false){
+      movers.remove(i);
+    }else{
     i++;
+    }
   }
 }
 
