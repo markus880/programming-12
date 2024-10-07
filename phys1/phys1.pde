@@ -5,6 +5,14 @@
 
 import fisica.*;
 
+button[] mybutton;
+int n= 1;
+    int G=1;
+color pink= #FA17C9;
+color orange= #FAA317;
+color nims;
+
+
 int grav;
 
 //pallete
@@ -16,7 +24,7 @@ color yellow = color(242, 215, 16);
  int cloud2= 100;
   int cloud1= 0;
 //assets
-PImage redBird;
+PImage redBird, soccer;
 
 //fisica
 FWorld world;
@@ -25,6 +33,7 @@ void setup() {
   //make window
   fullScreen(P2D);
   redBird = loadImage("red-bird.png");
+   soccer = loadImage("R.jpg");
   grav=1;
   //init world
   Fisica.init(this);
@@ -32,8 +41,11 @@ void setup() {
   world.setGravity(0, 900);
 
   //add terrain to world
-  makeTopPlatform();
+ // makeTopPlatform();
   makeBottomPlatform();
+  
+ mybutton= new button[n];
+  soccer.resize(25,100);
 }
 
 //=====================================================================================================================================
@@ -42,6 +54,17 @@ void draw() {
   //println("x: " + mouseX + " y: " + mouseY);
   background(blue);
 
+ click();
+
+ mybutton[0]= new button("gravity",1000,100,100,100,red,blue,false) ;
+ int k= 0;
+
+  while (k<n) {
+
+  mybutton[k].show();
+    mybutton[k].act();
+     k++;
+  }
 
 
  
@@ -70,41 +93,47 @@ void draw() {
   }
 
   circle(cloud2, 100, 100);
-  circle(1000, 100, 100);
-  gravity();
+  
+ 
 }
 
 //=====================================================================================================================================
 
-void makeTopPlatform() {
-  FPoly p = new FPoly();
+//void makeTopPlatform() {
+//  FPoly p = new FPoly();
 
-  //plot the vertices of this platform
-  p.vertex(-100, height*.1);
-  p.vertex(width*0.8, height*0.4);
-  p.vertex(width*0.8, height*0.4+100);
-  p.vertex(-100, height*0.1+100);
+//  //plot the vertices of this platform
+//  p.vertex(-100, height*.1);
+//  p.vertex(width*0.8, height*0.4);
+//  p.vertex(width*0.8, height*0.4+100);
+//  p.vertex(-100, height*0.1+100);
 
-  // define properties
-  p.setStatic(true);
-  p.setFillColor(brown);
-  p.setFriction(0.1);
+//  // define properties
+//  p.setStatic(true);
+//  p.setFillColor(brown);
+//  p.setFriction(0.1);
 
-  //put it in the world
-  world.add(p);
-}
+//  //put it in the world
+//  world.add(p);
+//}
 
 //=====================================================================================================================================
+
+
+
 
 void makeBottomPlatform() {
   FPoly p = new FPoly();
 
   //plot the vertices of this platform
-  p.vertex(width+100, height*0.6);
-  p.vertex(300, height*0.8);
-  p.vertex(300, height*0.8+100);
-  p.vertex(width+100, height*0.6+100);
-
+  p.vertex(100, 200);
+  p.vertex(100, 300);
+  p.vertex(300, 300);
+  p.vertex(300,100);
+    p.vertex(350,100);
+ p.vertex(350,350);
+  p.vertex(50,350);
+    p.vertex(50,100);
   // define properties
   p.setStatic(true);
   p.setFillColor(brown);
@@ -164,11 +193,12 @@ void makeBox() {
   box.setStroke(0);
   box.setStrokeWeight(2);
   box.setFillColor(green);
+  box.attachImage(soccer);
 
   //set physical properties
   box.setDensity(0.2);
   box.setFriction(1);
-  box.setRestitution(0.25);
+  box.setRestitution(12);
   world.add(box);
 }
 
@@ -186,22 +216,4 @@ void makeBird() {
   bird.setFriction(1);
   bird.setRestitution(0.5);
   world.add(bird);
-}
-
-void gravity() {
-}
-
-void mouseReleased() {
-  
-
-  println(grav);
-
-  if (dist(mouseX, mouseY, 1000, 100)<50) {
-    grav= grav*-1;
-  }
-  if (grav==-1) {
-    world.setGravity(0, 0);
-  } else if (grav==1) {
-    world.setGravity(0, 900);
-  }
 }
