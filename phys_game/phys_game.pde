@@ -2,18 +2,21 @@
 color grey = #9B9393;
 import fisica.*;
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
-float a;
-int p1s,p2s;
+float a,t;
+int p1s,p2s,mode,game,intro, over;
 FWorld world;
-FBox p1, p2,n1,n2,post;
-FCircle ball;
+FBox p1, p2,n1,n2,post,post1,post2,post3;
+FCircle ball,ast;
 
 
 void setup() {
   size(1440, 840);
   createworld();
   createbodies();
-
+game=0;
+intro=1;
+over=2;
+mode=intro;
 }
 
 void draw() {
@@ -21,11 +24,16 @@ background(0);
 
   world.step();
   world.draw();
-handleplayerintput();
-netcols();
-scroes();
 
-
+ 
+  if( mode==game){
+game();
+  }
+if(mode==over){
+gameover();
+}if (mode==intro){
+  intro();
+}
 }
 
 void createworld() {
@@ -43,6 +51,7 @@ void   createbodies() {
   p1.setDensity(0.2);
   p1.setFriction(1);
   p1.setRestitution(.7);
+ p1.setGrabbable(false);
     
 
   world.add(p1);
@@ -53,6 +62,7 @@ void   createbodies() {
   p2.setDensity(0.2);
   p2.setFriction(1);
   p2.setRestitution(.7);
+  p2.setGrabbable(false);
 
   world.add(p2);
   
@@ -62,10 +72,12 @@ void   createbodies() {
   ball.setFriction(1);
   ball.setRestitution(1.5);  
   world.add(ball);
+  ball.setGrabbable(false);
   
   n1= new FBox(100,440);
     n1.setPosition(0, height/2);
   n1.setStatic(true);
+  n1.setGrabbable(false);
   
   world.add(n1);
   
@@ -74,13 +86,24 @@ void   createbodies() {
   n2= new FBox(100,440);
     n2.setPosition(width, height/2);
   n2.setStatic(true);
+  n2.setGrabbable(false);
   
   world.add(n2);
   
   post(0,0);
+  
+  ast= new FCircle(150);
+  ast.setPosition(random(100,1340),random(100,740));
+   ast.setFriction(-1);
+  ast.setRestitution(1.01);  
+    ast.setVelocity(75,0);
+  world.add(ast);
 }
 
 void handleplayerintput() {
+
+  
+  
   
   float p1vx = p1.getVelocityX();
    float p1vy = p1.getVelocityY();
@@ -150,6 +173,15 @@ void scroes(){
   textAlign(CENTER, CENTER);
   text(p1s,200,200);
    text(p2s,1240,200);
+   
+   
+   
+     if(p2s==5){
+mode=over;
+  }
+    if(p1s==5){
+mode=over;
+  }
 }
 void reset(){
    p1.setPosition(width/4, height/2);
@@ -166,10 +198,31 @@ void post(float x,float y){
    post.setFillColor(grey);
     post.setPosition(0, height/2+25+220);
   post.setStatic(true);
+  post.setGrabbable(false);
   
   world.add(post);
+  post1= new FBox(100,50);
+   post1.setFillColor(grey);
+    post1.setPosition(0, height/2-25-220);
+  post1.setStatic(true);
+  post1.setGrabbable(false);
   
+  world.add(post1);
   
+   
+  post2= new FBox(100,50);
+   post2.setFillColor(grey);
+    post2.setPosition(1440, height/2-25-220);
+  post2.setStatic(true);
+  post2.setGrabbable(false);
   
+  world.add(post2);
+  
+   post3= new FBox(100,50);
+   post3.setFillColor(grey);
+    post3.setPosition(1440, height/2+25+220);
+  post3.setStatic(true);
+  post3.setGrabbable(false);
+  world.add(post3);
   
 }
