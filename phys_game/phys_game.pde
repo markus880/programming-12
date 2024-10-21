@@ -1,4 +1,16 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
 
+import fisica.*;
+
+Minim minim;
+AudioPlayer start,games, he,boing;
+
+  
 color grey = #9B9393;
 import fisica.*;
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
@@ -7,17 +19,25 @@ int p1s, p2s, mode, game, intro, over;
 FWorld world;
 FBox p1, p2, n1, n2, post, post1, post2, post3;
 FCircle ball, ast;
-PImage space,sp;
+PImage space,sp,back,bal,as,backg;
 
-
+ 
 void setup() {
   size(1440, 840);
 int t= 0;
+ 
   space = loadImage("r.png");
    sp = loadImage("r1.png");
+   back= loadImage("back.jpg");
+   bal= loadImage("ball.png");
+   as= loadImage("as.png");
+       backg= loadImage("backg.jpg"); 
+   back.resize(1440,840);
   space.resize(100, 100);
   sp.resize(100, 100);
-
+  bal.resize(100, 100);
+  as.resize(150,150);
+backg.resize(1440,840);
   createworld();
   createbodies();
   game=0;
@@ -25,10 +45,18 @@ int t= 0;
   over=2;
   mode=intro;
   v1=v2=400;
+  
+    minim = new Minim(this);
+   
+    start = minim.loadFile("intro.mp3");
+    games= minim.loadFile("game.mp3");
+    he = minim.loadFile("he.mp3");
+      boing = minim.loadFile("boing.mp3");
+  
 }
 
 void draw() {
-  background(0);
+ image(backg,0,0);
 
   world.step();
   world.draw();
@@ -84,6 +112,7 @@ void   createbodies() {
   ball.setDensity(0.2);
   ball.setFriction(1);
   ball.setRestitution(1.5);
+  ball.attachImage(bal);
   world.add(ball);
   ball.setGrabbable(false);
 
@@ -106,9 +135,10 @@ void   createbodies() {
   post(0, 0);
 
   ast= new FCircle(150);
-  ast.setPosition(random(100, 1340), random(100, 740));
+  ast.setPosition(random(100, 1340), 100);
   ast.setFriction(0);
   ast.setRestitution(1.01);
+  ast.attachImage(as);
  
   world.add(ast);
 }
@@ -125,36 +155,36 @@ void handleplayerintput() {
   
   if(v1>249){
   if (dkey==true) {
-    p1.setVelocity(100, p1vy);
+    p1.setVelocity(250, p1vy);
   }
 
   if (akey==true) {
-    p1.setVelocity(-100, p1vy);
+    p1.setVelocity(-250, p1vy);
   }
    if (wkey==true) {
-    p1.setVelocity(p1vx, -100);
+    p1.setVelocity(p1vx, -250);
   }
   if (skey==true) {
-    p1.setVelocity(p1vx, 100);
+    p1.setVelocity(p1vx, 250);
   }
   }
 
 if(v2>249){
 
   if (rkey==true) {
-    p2.setVelocity(100, p2vy);
+    p2.setVelocity(250, p2vy);
   }
 
   if (lkey==true) {
-    p2.setVelocity(-100, p2vy);
+    p2.setVelocity(-250, p2vy);
   }
  
 
   if (upkey==true) {
-    p2.setVelocity(p2vx, -100);
+    p2.setVelocity(p2vx, -250);
   }
   if (downkey==true) {
-    p2.setVelocity(p2vx, 100);
+    p2.setVelocity(p2vx, 250);
   }
 }
 }
@@ -175,11 +205,15 @@ boolean hitn(FBox n) {
 void netcols() {
   if (hitn(n1)) {
     p2s++;
+    he.rewind();
+    he.play();
     reset();
   }
 
   if (hitn(n2)) {
     p1s++;
+    he.rewind();
+    he.play();
     reset();
   }
 }
@@ -192,10 +226,10 @@ void scroes() {
 
 
 
-  if (p2s==5) {
+  if (p2s==3) {
     mode=over;
   }
-  if (p1s==5) {
+  if (p1s==3) {
     mode=over;
   }
 }
@@ -206,6 +240,7 @@ void reset() {
   p1.setVelocity(0, 0);
   p2.setVelocity(0, 0);
   ball.setVelocity(0, 0);
+  ast.setVelocity(0,0);
 }
 
 void post(float x, float y) {
@@ -257,11 +292,14 @@ boolean hitp(FBox p) {
 void pcols(){
   if (hitp(p1)) {
     v1=0;
+    boing.rewind();
+    boing.play();
     
   }
    if (hitp(p2)) {
     v2=0;
-    
+     boing.rewind();
+    boing.play();
   }
   
   

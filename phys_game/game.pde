@@ -1,4 +1,7 @@
 void game(){
+
+start.pause();
+ games.play();
  handleplayerintput();
 netcols();
 scroes();
@@ -13,7 +16,7 @@ if(t==400){
   
 }
 
-  println(v1);
+
   
 }
   
