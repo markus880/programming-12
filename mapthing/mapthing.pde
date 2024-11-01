@@ -4,11 +4,13 @@ import fisica.*;
 
 FWorld world;
 FPlayer player;
-
+ArrayList<FGameObject> terrain; 
 color black= #000000;
 color green= #B5E61D;
 color brown= #B97A57;
 color blue= #99D9EA;
+color red= #ED1C24;
+color grey= #C3C3C3;
 PImage map;
 int gridSize=32;
 float zoom=1.5;
@@ -16,6 +18,7 @@ float zoom=1.5;
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
 
 void setup() {
+  terrain= new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
 
@@ -34,10 +37,22 @@ void loadplayer() {
 }
 void draw() {
 background(255);
-
+actWorld();
   player.act();
   drawworld();
 }
+void actWorld(){
+  player.act();
+  for(int i = 0; i< terrain.size(); i++){
+    FGameObject t= terrain.get(i);
+    t.act();
+    
+  }
+  
+}
+
+
+
 
 void drawworld() {
 
@@ -75,6 +90,19 @@ void loadworld(PImage img) {
         world.add(b);
       }
       if (c== green) {
+      }if(c==red){
+        FBox b = new FBox(gridSize, gridSize);
+        b.setFillColor(red);
+        b.setPosition(x*gridSize, y*gridSize);
+        b.setStatic(true);
+        b.setGrabbable(false);
+        b.setFriction(4);
+           b.setName("spike");
+        world.add(b);
+      }if(c==grey){
+        FBridge br = new FBridge(x* gridSize, y*gridSize);
+        terrain.add(br);
+        world.add(br);
       }
       if (c==brown) {
       }
