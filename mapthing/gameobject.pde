@@ -7,7 +7,7 @@ class FGameObject extends FBox {
 
   void act() {
   }
-
+ 
 
   boolean istouching(String n) {
     ArrayList<FContact> contacts= getContacts();

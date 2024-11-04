@@ -1,10 +1,13 @@
 import fisica.*;
 
-
+PImage [] idle;
+PImage[] jump;
+PImage[]run;
+PImage[] action;
 
 FWorld world;
 FPlayer player;
-ArrayList<FGameObject> terrain; 
+ArrayList<FGameObject> terrain;
 color black= #000000;
 color green= #B5E61D;
 color brown= #B97A57;
@@ -16,17 +19,61 @@ int gridSize=32;
 float zoom=1.5;
 
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
-
+    int frame= 0;
 void setup() {
   terrain= new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
+   
+  idle= new PImage[1];
+
+  idle[0]= loadImage("frame_02_delay-0.08s.png");
+
+
+  jump= new PImage[1];
+  jump[0]= loadImage("frame_04_delay-0.08s.png");
+
+
+  run= new PImage[12];
+  run[0]= loadImage("frame_00_delay-0.08s.png");
+  run[1]= loadImage("frame_01_delay-0.08s.png");
+  run[2]= loadImage("frame_02_delay-0.08s.png");
+  run[3]= loadImage("frame_03_delay-0.08s.png");
+  run[4]= loadImage("frame_04_delay-0.08s.png");
+  run[5]= loadImage("frame_05_delay-0.08s.png");
+  run[6]= loadImage("frame_06_delay-0.08s.png");
+  run[7]= loadImage("frame_07_delay-0.08s.png");
+  run[8]= loadImage("frame_08_delay-0.08s.png");
+  run[9]= loadImage("frame_09_delay-0.08s.png");
+  run[10]= loadImage("frame_10_delay-0.08s.png");
+  run[11]= loadImage("frame_11_delay-0.08s.png");
+  
+run[0].resize(32,32);
+run[1].resize(32,32);
+run[2].resize(32,32);
+run[3].resize(32,32);
+run[4].resize(32,32);
+run[5].resize(32,32);
+run[6].resize(32,32);
+run[7].resize(32,32);
+run[8].resize(32,32);
+run[9].resize(32,32);
+run[10].resize(32,32);
+run[11].resize(32,32);
+
+  
+
+action = idle;
+
+
+
+
+
 
   map = loadImage("mapy.png");
 
   loadworld(map);
   loadplayer();
-
 }
 
 
@@ -36,19 +83,17 @@ void loadplayer() {
   world.add(player);
 }
 void draw() {
-background(255);
-actWorld();
+  background(255);
+  actWorld();
   player.act();
   drawworld();
 }
-void actWorld(){
+void actWorld() {
   player.act();
-  for(int i = 0; i< terrain.size(); i++){
+  for (int i = 0; i< terrain.size(); i++) {
     FGameObject t= terrain.get(i);
     t.act();
-    
   }
-  
 }
 
 
@@ -90,16 +135,18 @@ void loadworld(PImage img) {
         world.add(b);
       }
       if (c== green) {
-      }if(c==red){
+      }
+      if (c==red) {
         FBox b = new FBox(gridSize, gridSize);
         b.setFillColor(red);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(4);
-           b.setName("spike");
+        b.setName("spike");
         world.add(b);
-      }if(c==grey){
+      }
+      if (c==grey) {
         FBridge br = new FBridge(x* gridSize, y*gridSize);
         terrain.add(br);
         world.add(br);
@@ -113,7 +160,7 @@ void loadworld(PImage img) {
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(0.5);
-           b.setName("ice");
+        b.setName("ice");
         world.add(b);
       }
     }
