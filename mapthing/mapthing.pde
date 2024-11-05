@@ -28,11 +28,11 @@ void setup() {
   idle= new PImage[1];
 
   idle[0]= loadImage("frame_02_delay-0.08s.png");
-
+idle[0].resize(32,32);
 
   jump= new PImage[1];
   jump[0]= loadImage("frame_04_delay-0.08s.png");
-
+jump[0].resize(32,32);
 
   run= new PImage[12];
   run[0]= loadImage("frame_00_delay-0.08s.png");
@@ -45,7 +45,7 @@ void setup() {
   run[7]= loadImage("frame_07_delay-0.08s.png");
   run[8]= loadImage("frame_08_delay-0.08s.png");
   run[9]= loadImage("frame_09_delay-0.08s.png");
-  run[10]= loadImage("frame_10_delay-0.08s.png");
+  run[10]= loadImage("frame_010_delay-0.08s.png");
   run[11]= loadImage("frame_11_delay-0.08s.png");
   
 run[0].resize(32,32);
