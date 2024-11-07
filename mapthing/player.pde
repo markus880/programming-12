@@ -1,8 +1,6 @@
 class FPlayer extends FGameObject {
 
-  int dir;
-  final int l=-1;
-  final int r= 1;
+
   
   
   FPlayer() {

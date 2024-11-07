@@ -4,6 +4,7 @@ PImage [] idle;
 PImage[] jump;
 PImage[]run;
 PImage[] action;
+PImage[] goomba;
 
 FWorld world;
 FPlayer player;
@@ -14,25 +15,40 @@ color brown= #B97A57;
 color blue= #99D9EA;
 color red= #ED1C24;
 color grey= #C3C3C3;
+color pink= #FFAEC9;
+color yellow= #FFF200;
 PImage map;
 int gridSize=32;
 float zoom=1.5;
 
+ArrayList<FGameObject> enemies;
+
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
-    int frame= 0;
+int frame= 0;
 void setup() {
   terrain= new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
-   
+
+  goomba=new PImage[8];
+
+  goomba[0]=loadImage("aframe_0_delay-0.16s (1).png");
+  goomba[1]=loadImage("aframe_0_delay-0.16s (2).png");
+  goomba[2]=loadImage("aframe_0_delay-0.16s (3).png");
+  goomba[3]=loadImage("aframe_0_delay-0.16s (4).png");
+  goomba[4]=loadImage("aframe_0_delay-0.16s (5).png");
+  goomba[5]=loadImage("aframe_0_delay-0.16s (6).png");
+  goomba[6]=loadImage("aframe_0_delay-0.16s (7).png");
+  goomba[7]=loadImage("aframe_0_delay-0.16s (8).png");
+
   idle= new PImage[1];
 
   idle[0]= loadImage("frame_02_delay-0.08s.png");
-idle[0].resize(32,32);
+  idle[0].resize(32, 32);
 
   jump= new PImage[1];
   jump[0]= loadImage("frame_04_delay-0.08s.png");
-jump[0].resize(32,32);
+  jump[0].resize(32, 32);
 
   run= new PImage[12];
   run[0]= loadImage("frame_00_delay-0.08s.png");
@@ -47,23 +63,23 @@ jump[0].resize(32,32);
   run[9]= loadImage("frame_09_delay-0.08s.png");
   run[10]= loadImage("frame_010_delay-0.08s.png");
   run[11]= loadImage("frame_11_delay-0.08s.png");
-  
-run[0].resize(32,32);
-run[1].resize(32,32);
-run[2].resize(32,32);
-run[3].resize(32,32);
-run[4].resize(32,32);
-run[5].resize(32,32);
-run[6].resize(32,32);
-run[7].resize(32,32);
-run[8].resize(32,32);
-run[9].resize(32,32);
-run[10].resize(32,32);
-run[11].resize(32,32);
 
-  
+  run[0].resize(32, 32);
+  run[1].resize(32, 32);
+  run[2].resize(32, 32);
+  run[3].resize(32, 32);
+  run[4].resize(32, 32);
+  run[5].resize(32, 32);
+  run[6].resize(32, 32);
+  run[7].resize(32, 32);
+  run[8].resize(32, 32);
+  run[9].resize(32, 32);
+  run[10].resize(32, 32);
+  run[11].resize(32, 32);
 
-action = idle;
+
+
+  action = idle;
 
 
 
@@ -83,16 +99,25 @@ void loadplayer() {
   world.add(player);
 }
 void draw() {
+
+
+
   background(255);
   actWorld();
   player.act();
   drawworld();
 }
 void actWorld() {
+
   player.act();
   for (int i = 0; i< terrain.size(); i++) {
     FGameObject t= terrain.get(i);
     t.act();
+  }
+
+  for (int i = 0; i< enemies.size(); i++) {
+    FGameObject e= enemies.get(i);
+    e.act();
   }
 }
 
@@ -136,6 +161,11 @@ void loadworld(PImage img) {
       }
       if (c== green) {
       }
+      if (c==pink) {
+        FGoomba gmb= new FGoomba(x*gridSize, gridSize);
+        enemies.add(gmb);
+        world.add(gmb);
+      }
       if (c==red) {
         FBox b = new FBox(gridSize, gridSize);
         b.setFillColor(red);
@@ -152,6 +182,16 @@ void loadworld(PImage img) {
         world.add(br);
       }
       if (c==brown) {
+      }
+      if (c==yellow) {
+        FBox b = new FBox(gridSize, gridSize);
+        b.setFillColor(pink);
+        b.setPosition(x*gridSize, y*gridSize);
+        b.setStatic(true);
+        b.setGrabbable(false);
+        b.setFriction(1);
+        b.setName("wall");
+        world.add(b);
       }
       if (c==blue) {
         FBox b = new FBox(gridSize, gridSize);

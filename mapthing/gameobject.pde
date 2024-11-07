@@ -1,6 +1,8 @@
 class FGameObject extends FBox {
 
-
+  int dir;
+  final int l=-1;
+  final int r= 1;
   FGameObject() {
     super(gridSize, gridSize);
   }
