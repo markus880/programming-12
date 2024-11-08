@@ -27,19 +27,23 @@ boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
 int frame= 0;
 void setup() {
   terrain= new ArrayList<FGameObject>();
+    enemies= new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
 
   goomba=new PImage[8];
 
-  goomba[0]=loadImage("aframe_0_delay-0.16s (1).png");
-  goomba[1]=loadImage("aframe_0_delay-0.16s (2).png");
-  goomba[2]=loadImage("aframe_0_delay-0.16s (3).png");
-  goomba[3]=loadImage("aframe_0_delay-0.16s (4).png");
-  goomba[4]=loadImage("aframe_0_delay-0.16s (5).png");
-  goomba[5]=loadImage("aframe_0_delay-0.16s (6).png");
-  goomba[6]=loadImage("aframe_0_delay-0.16s (7).png");
-  goomba[7]=loadImage("aframe_0_delay-0.16s (8).png");
+  goomba[0]=loadImage("aframe_0_delay-0.16s (1).gif");
+  goomba[1]=loadImage("aframe_0_delay-0.16s (2).gif");
+  goomba[2]=loadImage("aframe_0_delay-0.16s (3).gif");
+  goomba[3]=loadImage("aframe_0_delay-0.16s (4).gif");
+  goomba[4]=loadImage("aframe_0_delay-0.16s (5).gif");
+  goomba[5]=loadImage("aframe_0_delay-0.16s (6).gif");
+  goomba[6]=loadImage("aframe_0_delay-0.16s (7).gif");
+  goomba[7]=loadImage("aframe_0_delay-0.16s (8).gif");
+  for(int p=0;p<8;p++){
+    goomba[p].resize(32,32);
+  }
 
   idle= new PImage[1];
 

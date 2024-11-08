@@ -22,8 +22,14 @@ class FGoomba extends FGameObject {
     }
   }
 void collide(){
+  if(istouching("wall")){
+    direction*=-1;
+    setPosition(getX()+direction,getY());
+  }
+  
 }
 void move(){
-  
+  float vy= getVelocityY();
+  setVelocity(speed*direction, vy);
 }
 }
