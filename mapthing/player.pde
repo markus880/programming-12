@@ -20,7 +20,10 @@ class FPlayer extends FGameObject {
     animate();
     
     if (istouching("spike")) {
-      setPosition(0, 0);
+      if(playerd<1){
+     lives--;
+     playerd=180;
+      }
     }
   }
   void hinput() {

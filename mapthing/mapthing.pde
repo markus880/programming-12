@@ -5,7 +5,7 @@ PImage[] jump;
 PImage[]run;
 PImage[] action;
 PImage[] goomba;
-
+int lives,game,over,intro,mode,playerd;
 FWorld world;
 FPlayer player;
 ArrayList<FGameObject> terrain;
@@ -26,6 +26,13 @@ ArrayList<FGameObject> enemies;
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
 int frame= 0;
 void setup() {
+  game=0;
+  intro=1;
+  over=2;
+  mode=game;
+  playerd=0;
+  
+  lives=3;
   terrain= new ArrayList<FGameObject>();
     enemies= new ArrayList<FGameObject>();
   size(1440, 840);
@@ -106,11 +113,21 @@ void draw() {
 
 
 
-  background(255);
-  actWorld();
-  player.act();
-  drawworld();
+ 
+  println(playerd);
+  println(lives);
+  
+   if ( mode==game) {
+    game();
+  }
+  if (mode==over) {
+    gameover();
+  }
+  if (mode==intro) {
+    intro();
+  }
 }
+
 void actWorld() {
 
   player.act();
@@ -139,6 +156,8 @@ void drawworld() {
 
 
   popMatrix();
+  
+  
 }
 
 void loadworld(PImage img) {

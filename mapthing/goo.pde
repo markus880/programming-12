@@ -26,7 +26,16 @@ void collide(){
     direction*=-1;
     setPosition(getX()+direction,getY());
   }
-  
+  if (istouching("player")){
+    if (player.getY()<getY()-gridSize/1.5){
+    world.remove(this);
+    enemies.remove(this);
+    player.setVelocity(player.getVelocityX(), -300);
+    }else{
+
+     lives--;
+  }
+  }
 }
 void move(){
   float vy= getVelocityY();
