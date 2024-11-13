@@ -5,6 +5,11 @@ PImage[] jump;
 PImage[]run;
 PImage[] action;
 PImage[] goomba;
+
+
+PImage grass,brick, dirt,spike,ice,bridge,rail;
+
+
 int lives,game,over,intro,mode,playerd;
 FWorld world;
 FPlayer player;
@@ -31,6 +36,27 @@ void setup() {
   over=2;
   mode=game;
   playerd=0;
+  
+  
+  
+  
+  rail= loadImage("rail.png");
+  spike=loadImage("spike.png");
+  dirt= loadImage("dirt.jpg");
+  brick = loadImage("brick.jpg");
+   grass= loadImage("grasstext.jpg");
+   bridge= loadImage("bridge.png");
+   ice= loadImage("Ice.png");
+  grass.resize(gridSize,gridSize);
+  brick.resize(gridSize,gridSize);
+  dirt.resize(gridSize, gridSize);  
+  spike.resize(gridSize, gridSize);
+  ice.resize(gridSize, gridSize);
+  bridge.resize(gridSize,gridSize);
+  rail.resize(gridSize , gridSize);
+  
+  
+  
   
   lives=3;
   terrain= new ArrayList<FGameObject>();
@@ -171,15 +197,26 @@ void loadworld(PImage img) {
 
     for (int x=0; x< map.width; x++) {
       color c = map.get(x, y);
-      if (c == black) {
+      if (c == black && img.get(x,y-1)== black) {
 
         FBox b = new FBox(gridSize, gridSize);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(6);
-        b.setFillColor(black);
+      
+        b.attachImage(dirt);
         b.setName("stone");
+        world.add(b);
+      }else if(c==black){
+            FBox b = new FBox(gridSize, gridSize);
+        b.setPosition(x*gridSize, y*gridSize);
+        b.setStatic(true);
+        b.setGrabbable(false);
+        b.setFriction(6);
+        
+        b.attachImage(grass);
+          b.setName("stone");
         world.add(b);
       }
       if (c== green) {
@@ -191,11 +228,12 @@ void loadworld(PImage img) {
       }
       if (c==red) {
         FBox b = new FBox(gridSize, gridSize);
-        b.setFillColor(red);
+    
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(4);
+        b.attachImage(spike);
         b.setName("spike");
         world.add(b);
       }
@@ -205,10 +243,11 @@ void loadworld(PImage img) {
         world.add(br);
       }
       if (c==brown) {
+  
       }
       if (c==yellow) {
         FBox b = new FBox(gridSize, gridSize);
-        b.setFillColor(pink);
+         b.attachImage(dirt);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
@@ -223,6 +262,7 @@ void loadworld(PImage img) {
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(0.5);
+             b.attachImage(ice);
         b.setName("ice");
         world.add(b);
       }

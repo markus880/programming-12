@@ -4,7 +4,10 @@ class FBridge extends FGameObject{
     
     super();
      setPosition(x, y);
-    setFillColor(green);
+
+     attachImage(rail);
+    
+        attachImage(bridge);
    
     setName("bridge");
     setRotatable(false);

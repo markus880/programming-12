@@ -20,9 +20,11 @@ class FPlayer extends FGameObject {
     animate();
     
     if (istouching("spike")) {
+        player.setVelocity(player.getVelocityX(), -300);
       if(playerd<1){
+        
      lives--;
-     playerd=180;
+     playerd=120;
       }
     }
   }
@@ -41,8 +43,8 @@ if(p1vy==0)action=idle;
       dir=l;
         action=run;
     }
-    if (wkey==true) {
-      player.setVelocity(p1vx, -250);
+    if (wkey==true && p1vy<20 && p1vy>-20) {
+      player.setVelocity(p1vx, -500);
       if (abs(p1vy)>0.1) action=jump;
     }
     if (skey==true) {
