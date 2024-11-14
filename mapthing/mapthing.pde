@@ -5,7 +5,7 @@ PImage[] jump;
 PImage[]run;
 PImage[] action;
 PImage[] goomba;
-
+float e=1;
 
 PImage grass,brick, dirt,spike,ice,bridge,rail;
 
@@ -23,7 +23,7 @@ color grey= #C3C3C3;
 color pink= #FFAEC9;
 color yellow= #FFF200;
 PImage map;
-int gridSize=32;
+int gridSize=60;
 float zoom=1.5;
 
 ArrayList<FGameObject> enemies;
@@ -75,17 +75,17 @@ void setup() {
   goomba[6]=loadImage("aframe_0_delay-0.16s (7).gif");
   goomba[7]=loadImage("aframe_0_delay-0.16s (8).gif");
   for(int p=0;p<8;p++){
-    goomba[p].resize(32,32);
+    goomba[p].resize(gridSize,gridSize);
   }
 
   idle= new PImage[1];
 
   idle[0]= loadImage("frame_02_delay-0.08s.png");
-  idle[0].resize(32, 32);
+  idle[0].resize(gridSize,gridSize);
 
   jump= new PImage[1];
   jump[0]= loadImage("frame_04_delay-0.08s.png");
-  jump[0].resize(32, 32);
+  jump[0].resize(gridSize,gridSize);
 
   run= new PImage[12];
   run[0]= loadImage("frame_00_delay-0.08s.png");
@@ -101,18 +101,18 @@ void setup() {
   run[10]= loadImage("frame_010_delay-0.08s.png");
   run[11]= loadImage("frame_11_delay-0.08s.png");
 
-  run[0].resize(32, 32);
-  run[1].resize(32, 32);
-  run[2].resize(32, 32);
-  run[3].resize(32, 32);
-  run[4].resize(32, 32);
-  run[5].resize(32, 32);
-  run[6].resize(32, 32);
-  run[7].resize(32, 32);
-  run[8].resize(32, 32);
-  run[9].resize(32, 32);
-  run[10].resize(32, 32);
-  run[11].resize(32, 32);
+  run[0].resize(gridSize,gridSize);
+  run[1].resize(gridSize,gridSize);
+  run[2].resize(gridSize,gridSize);
+  run[3].resize(gridSize,gridSize);
+  run[4].resize(gridSize,gridSize);
+  run[5].resize(gridSize,gridSize);
+  run[6].resize(gridSize,gridSize);
+  run[7].resize(gridSize,gridSize);
+  run[8].resize(gridSize,gridSize);
+  run[9].resize(gridSize,gridSize);
+  run[10].resize(gridSize,gridSize);
+  run[11].resize(gridSize,gridSize);
 
 
 
@@ -140,7 +140,6 @@ void draw() {
 
 
  
-  println(playerd);
   println(lives);
   
    if ( mode==game) {
@@ -189,7 +188,7 @@ void drawworld() {
 void loadworld(PImage img) {
 
   world = new FWorld(-2000, -2000, 2000, 2000);
-  world.setGravity(0, 900);
+  world.setGravity(0, 1100);
 
 
 

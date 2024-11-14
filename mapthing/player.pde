@@ -18,9 +18,11 @@ class FPlayer extends FGameObject {
 
     hinput();
     animate();
+ 
+
     
     if (istouching("spike")) {
-        player.setVelocity(player.getVelocityX(), -300);
+        player.setVelocity(player.getVelocityX(), -500);
       if(playerd<1){
         
      lives--;
@@ -29,26 +31,29 @@ class FPlayer extends FGameObject {
     }
   }
   void hinput() {
+    
     float p1vx = player.getVelocityX();
     float p1vy = player.getVelocityY();
 if(p1vy==0)action=idle;
     if (dkey==true) {
-      player.setVelocity(250, p1vy);
+      player.setVelocity(500, p1vy);
       action=run;
       dir=r;
     }
 
     if (akey==true) {
-      player.setVelocity(-250, p1vy);
+      player.setVelocity(-500, p1vy);
       dir=l;
         action=run;
     }
-    if (wkey==true && p1vy<20 && p1vy>-20) {
-      player.setVelocity(p1vx, -500);
+    if (wkey==true && p1vy<20 && p1vy>-20 && e<0) {
+      player.setVelocity(p1vx, -700);
+         e=45;
       if (abs(p1vy)>0.1) action=jump;
     }
     if (skey==true) {
       player.setVelocity(p1vx, 250);
+   
     }
   }
   

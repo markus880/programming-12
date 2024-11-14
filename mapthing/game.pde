@@ -4,6 +4,8 @@ void game(){
   player.act();
   drawworld();
 
+e--;
+
   playerd--;
   if (lives<1){
     mode=over;
