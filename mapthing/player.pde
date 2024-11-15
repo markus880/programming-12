@@ -36,18 +36,18 @@ class FPlayer extends FGameObject {
     float p1vy = player.getVelocityY();
 if(p1vy==0)action=idle;
     if (dkey==true) {
-      player.setVelocity(500, p1vy);
+      player.setVelocity(250, p1vy);
       action=run;
       dir=r;
     }
 
     if (akey==true) {
-      player.setVelocity(-500, p1vy);
+      player.setVelocity(-250, p1vy);
       dir=l;
         action=run;
     }
     if (wkey==true && p1vy<20 && p1vy>-20 && e<0) {
-      player.setVelocity(p1vx, -700);
+      player.setVelocity(p1vx, -400);
          e=45;
       if (abs(p1vy)>0.1) action=jump;
     }

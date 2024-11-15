@@ -5,6 +5,7 @@ PImage[] jump;
 PImage[]run;
 PImage[] action;
 PImage[] goomba;
+PImage[] lava;
 float e=1;
 
 PImage grass,brick, dirt,spike,ice,bridge,rail;
@@ -23,8 +24,8 @@ color grey= #C3C3C3;
 color pink= #FFAEC9;
 color yellow= #FFF200;
 PImage map;
-int gridSize=60;
-float zoom=1.5;
+int gridSize=32;
+float zoom=2;
 
 ArrayList<FGameObject> enemies;
 
@@ -63,6 +64,16 @@ void setup() {
     enemies= new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
+  
+  lava=new PImage[35];
+  
+  for(int n=0;n<35;n++){
+  lava[n]= loadImage ("frame_"+n+"_delay-0.07s.gif");
+  lava[n].resize(gridSize, gridSize);
+  
+  }
+  
+  
 
   goomba=new PImage[8];
 
@@ -188,7 +199,7 @@ void drawworld() {
 void loadworld(PImage img) {
 
   world = new FWorld(-2000, -2000, 2000, 2000);
-  world.setGravity(0, 1100);
+  world.setGravity(0, 900);
 
 
 
@@ -242,7 +253,11 @@ void loadworld(PImage img) {
         world.add(br);
       }
       if (c==brown) {
+  Flava la= new Flava(x*gridSize, y*gridSize);
   
+        terrain.add(la);
+        world.add(la);
+        
       }
       if (c==yellow) {
         FBox b = new FBox(gridSize, gridSize);
