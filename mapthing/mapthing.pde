@@ -28,6 +28,7 @@ int gridSize=32;
 float zoom=2;
 
 ArrayList<FGameObject> enemies;
+ArrayList<FGameObject> bullets;
 
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
 int frame= 0;
@@ -62,6 +63,7 @@ void setup() {
   lives=3;
   terrain= new ArrayList<FGameObject>();
     enemies= new ArrayList<FGameObject>();
+    bullets=new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
   
@@ -151,7 +153,6 @@ void draw() {
 
 
  
-  println(lives);
   
    if ( mode==game) {
     game();
@@ -230,6 +231,10 @@ void loadworld(PImage img) {
         world.add(b);
       }
       if (c== green) {
+        
+        Fjeff jf=new Fjeff(x*gridSize, y*gridSize);
+        enemies.add(jf);
+        world.add(jf);
       }
       if (c==pink) {
         FGoomba gmb= new FGoomba(x*gridSize, gridSize);
@@ -282,4 +287,6 @@ void loadworld(PImage img) {
       }
     }
   }
+  
+  
 }

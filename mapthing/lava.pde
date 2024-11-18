@@ -37,12 +37,13 @@ int h=1;
   
   
   void anim(){
-    
-      if (frames>=lava.length-1) h=h*-1;
-      if( frames<1)h=h*-1;
+
+      if (frames>=lava.length-1) frames=0;
+    //  if( frames<1)h=h*-1;
     if (frameCount %0.5==0) {
       attachImage(lava[frames]);
            frames=frames+h;
+         
     }
     println(frames);
     
