@@ -5,23 +5,36 @@ class Fspell extends FGameObject{
  Fspell(float x, float y){
     super();
     setPosition(x,y);
+
     setName("jeff");
     setRotatable(false);
+   
   }
  
  void act(){
   jx=getX();
   jy= getY();
   
-   jvy= (jy-player.getY())/(jx-player.getX());
-    jvx=(jx-player.getX())/(jy-player.getY());
-    println("hi");
-    circle(jx,jy,10);
+   jvy= 100*(jy-player.getY())/(jx-player.getX());
+   if(jy<player.getX()){
+    jx=100;       //(jx-player.getX())/(jy-player.getY());
+    
+   }
+   
+   
+    if(jy>player.getX()){
+    jx=-100;       //(jx-player.getX())/(jy-player.getY());
+    
+   }
+setVelocity(jx,jy);
+    //circle(jx,jy,10);
     jx=jx+jvx;
-    jy=jy+jvy;
+    jy=jy-jvy;
+  
  }
  void animate(){
-    circle(jx,jy,10);
+   setFill(red);
+    //circle(jx,jy,10);
     
  }
     

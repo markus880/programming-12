@@ -3,6 +3,7 @@ class Fjeff extends FGameObject {
   int speed= 50;
   int frame= 0;
   float jx,jy,jvx,jvy;
+  float time= 180;
   Fjeff(float x, float y){
     super();
     setPosition(x,y);
@@ -49,7 +50,7 @@ void shoot(){
     jx=getX();
   jy= getY();
 
-  if(dist(player.getX(),player.getY(),getX(),getY())<270){
+  if(dist(player.getX(),player.getY(),getX(),getY())<400 ){
     
     
     // jvy= (jy-player.getY())/(jx-player.getX());
@@ -58,12 +59,16 @@ void shoot(){
     //circle(jx,jy,10);
     //jx=jx+jvx;
     //jy=jy+jvy;
+    if(time<0){
     
-    Fspell sp= new Fspell(getX()*gridSize, getY()*gridSize);
+    Fspell sp= new Fspell(getX(), getY()-20);
         enemies.add(sp);
         world.add(sp);
- 
+        time=180;
+      
+    }
     
+    time--;
     
     
   }
