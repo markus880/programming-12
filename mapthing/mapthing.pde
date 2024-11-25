@@ -8,9 +8,10 @@ PImage[] goomba;
 PImage[] lava;
 float e=1;
 
+float respx, respy;
 PImage grass,brick, dirt,spike,ice,bridge,rail;
 
-
+boolean switchy;
 int lives,game,over,intro,mode,playerd;
 FWorld world;
 FPlayer player;
@@ -23,6 +24,8 @@ color red= #ED1C24;
 color grey= #C3C3C3;
 color pink= #FFAEC9;
 color yellow= #FFF200;
+color dgreen = #22B14C;
+color purple= #A349A4;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -40,7 +43,7 @@ void setup() {
   playerd=0;
   
   
-  
+ switchy= false; 
   
   rail= loadImage("rail.png");
   spike=loadImage("spike.png");
@@ -152,7 +155,7 @@ void draw() {
 
 
 
- 
+
   
    if ( mode==game) {
     game();
@@ -284,6 +287,16 @@ void loadworld(PImage img) {
              b.attachImage(ice);
         b.setName("ice");
         world.add(b);
+      }
+      if (c== purple){
+          fswitch sw= new fswitch(x*gridSize, y*gridSize);
+  
+        terrain.add(sw);
+        world.add(sw);
+        
+      }if (c==dgreen){
+        
+        
       }
     }
   }

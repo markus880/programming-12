@@ -12,24 +12,59 @@ class Fspell extends FGameObject{
   }
  
  void act(){
-  jx=getX();
+
   jy= getY();
+  jx= getX();
   
-   jvy= 100*(jy-player.getY())/(jx-player.getX());
-   if(jy<player.getX()){
-    jx=100;       //(jx-player.getX())/(jy-player.getY());
+   jvy= -100*(jy-player.getY())/(jx-player.getX());
+   if(jx<player.getX()){
+    jvx=200;       //(jx-player.getX())/(jy-player.getY());
     
    }
    
    
-    if(jy>player.getX()){
-    jx=-100;       //(jx-player.getX())/(jy-player.getY());
+    if(jx>player.getX()){
+    jvx=-200;       //(jx-player.getX())/(jy-player.getY());
     
    }
-setVelocity(jx,jy);
+setVelocity(jvx,jvy);
     //circle(jx,jy,10);
     jx=jx+jvx;
     jy=jy-jvy;
+    
+    
+    
+      if (istouching("player")){
+    
+    world.remove(this);
+    enemies.remove(this);
+    player.setVelocity(5*jvx,5*jvy);
+    lives--;
+    
+    }else if (istouching("ice")){
+      
+    world.remove(this);
+    enemies.remove(this);
+    }
+    
+    else if (istouching("brick")){
+      
+    world.remove(this);
+    enemies.remove(this);
+    }
+    else if (istouching("bridge")){
+      
+    world.remove(this);
+    enemies.remove(this);
+    }
+    else if (istouching("wall")){
+      
+    world.remove(this);
+    enemies.remove(this);
+    }
+  
+  
+  
   
  }
  void animate(){
