@@ -3,7 +3,7 @@ class FPlayer extends FGameObject {
 
   
   
-  FPlayer() {
+  FPlayer(float x, float y) {
     super ();
     dir=r;
     setPosition(300, 0);
@@ -52,7 +52,7 @@ if(p1vy==0)action=idle;
       if (abs(p1vy)>0.1) action=jump;
     }
     if (skey==true) {
-      player.setVelocity(p1vx, 250);
+     // player.setVelocity(p1vx, 250);
    
     }
   }

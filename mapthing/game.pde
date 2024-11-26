@@ -9,6 +9,11 @@ e--;
 
   playerd--;
   if (lives<1){
-    mode=over;
+  player.setPosition(respx, respy-20);
+  lives =3;
+  
+loadworld(map);
+  loadplayer();
+    player.setPosition(respx, respy-60);
+   }
   }
-}

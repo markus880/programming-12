@@ -61,7 +61,7 @@ void setup() {
   rail.resize(gridSize , gridSize);
   
   
-  
+  respx=respy=0;
   
   lives=3;
   terrain= new ArrayList<FGameObject>();
@@ -148,7 +148,7 @@ void setup() {
 
 
 void loadplayer() {
-  player = new FPlayer();
+  player = new FPlayer(respx,respy);
   world.add(player);
 }
 void draw() {
@@ -295,7 +295,9 @@ void loadworld(PImage img) {
         world.add(sw);
         
       }if (c==dgreen){
-        
+        fpoint fp= new fpoint(x*gridSize, y*gridSize);
+          terrain.add(fp);
+        world.add(fp);
         
       }
     }

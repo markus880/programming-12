@@ -15,7 +15,7 @@ class fpoint extends FGameObject{
  void act(){
    if (istouching("player")){
      setStatic(true);
-     setSensor(true);
+     setSensor(false);
     respx= getX();
     respy= getY();
    }
