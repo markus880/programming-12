@@ -7,8 +7,9 @@ PImage[] action;
 PImage[] goomba;
 PImage[] lava;
 float e=1;
+float tp=0;
 
-float respx, respy, tp1x,tp1y,tpx2,tpy2;
+float respx, respy, tp1x,tp1y,tp2x,tp2y;
 PImage grass,brick, dirt,spike,ice,bridge,rail;
 
 boolean switchy;
@@ -28,15 +29,21 @@ color dgreen = #22B14C;
 color purple= #A349A4;
 color dblue= #3F48CC;
 color orange= #FF7F27;
+color dpink= #EE8AF8;
+color maroon= #75163F;
 PImage map;
 int gridSize=32;
 float zoom=2;
+
+
+
 
 ArrayList<FGameObject> enemies;
 ArrayList<FGameObject> bullets;
 
 boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
 int frame= 0;
+
 void setup() {
   game=0;
   intro=1;
@@ -44,6 +51,11 @@ void setup() {
   mode=game;
   playerd=0;
   
+//  tp1x= ftp.getX();
+//tp1y= ftp.getY();
+
+//tp2x= ftp2.getX();
+//tp2y= ftp2.getY();
   
  switchy= false; 
   
@@ -204,7 +216,7 @@ void drawworld() {
 
 void loadworld(PImage img) {
 
-  world = new FWorld(-2000, -2000, 2000, 2000);
+  world = new FWorld(-2000, -2000, 200000, 2000);
   world.setGravity(0, 900);
 
 
@@ -307,7 +319,20 @@ void loadworld(PImage img) {
         world.add(tr);
       
       }if(c==orange){
+         ftp tp= new ftp(x*gridSize, y*gridSize);
+          terrain.add(tp);
+        world.add(tp); 
         
+      }
+      if(c==dpink){
+                ftp2 tp2= new ftp2(x*gridSize, y*gridSize);
+          terrain.add(tp2);
+        world.add(tp2);  
+      }
+      if(c==maroon){
+        Fshellg sg= new Fshellg(x*gridSize, y*gridSize);
+          enemies.add(sg);
+        world.add(sg);  
         
       }
     }

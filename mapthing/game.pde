@@ -4,6 +4,9 @@ void game(){
   player.act();
   drawworld();
 
+  
+tp++;
+
 
 e--;
 
