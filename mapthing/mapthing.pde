@@ -8,7 +8,7 @@ PImage[] goomba;
 PImage[] lava;
 float e=1;
 
-float respx, respy;
+float respx, respy, tp1x,tp1y,tpx2,tpy2;
 PImage grass,brick, dirt,spike,ice,bridge,rail;
 
 boolean switchy;
@@ -26,6 +26,8 @@ color pink= #FFAEC9;
 color yellow= #FFF200;
 color dgreen = #22B14C;
 color purple= #A349A4;
+color dblue= #3F48CC;
+color orange= #FF7F27;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -298,6 +300,14 @@ void loadworld(PImage img) {
         fpoint fp= new fpoint(x*gridSize, y*gridSize);
           terrain.add(fp);
         world.add(fp);
+        
+      }if (c==dblue){
+          ftramp tr= new ftramp(x*gridSize, y*gridSize);
+          terrain.add(tr);
+        world.add(tr);
+      
+      }if(c==orange){
+        
         
       }
     }

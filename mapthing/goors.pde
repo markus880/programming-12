@@ -61,10 +61,10 @@ void shoot(){
     //jy=jy+jvy;
     if(time<0){
     
-    Fspell sp= new Fspell(getX(), getY()-20);
+    Fspell sp= new Fspell(getX(), getY()-40);
         enemies.add(sp);
         world.add(sp);
-        time=180;
+        time=240;
       
     }
     

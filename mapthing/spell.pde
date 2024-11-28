@@ -62,6 +62,11 @@ setVelocity(jvx,jvy);
     world.remove(this);
     enemies.remove(this);
     }
+   else if (istouching("jeff")){
+      
+    world.remove(this);
+    enemies.remove(this);
+    }
   
   
   
