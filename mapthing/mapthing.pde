@@ -31,6 +31,8 @@ color dblue= #3F48CC;
 color orange= #FF7F27;
 color dpink= #EE8AF8;
 color maroon= #75163F;
+color beige= #EFE4B0;
+color dbrown= #880015;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -334,6 +336,20 @@ void loadworld(PImage img) {
           enemies.add(sg);
         world.add(sg);  
         
+      }if (c==beige){
+        
+         fwomp wp= new fwomp(x*gridSize, y*gridSize);
+
+        enemies.add(wp);
+        world.add(wp);
+ 
+ 
+        
+      }if(c==dbrown){
+          Fboo bo= new Fboo(x*gridSize, y*gridSize);
+ 
+        enemies.add(bo);
+        world.add(bo);
       }
     }
   }

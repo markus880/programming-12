@@ -10,7 +10,7 @@ class fshell extends FGameObject{
     setName("shell");
     setRotatable(false);
     setStatic(false);
-    setRestitution(1.6);
+    setRestitution(2.6);
   }
   
  void act(){
