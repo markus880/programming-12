@@ -16,6 +16,7 @@ class Fspell extends FGameObject{
   jy= getY();
   jx= getX();
   
+  
    jvy= -100*(jy-player.getY())/(jx-player.getX());
    if(jx<player.getX()){
     jvx=200;       //(jx-player.getX())/(jy-player.getY());
@@ -38,7 +39,12 @@ setVelocity(jvx,jvy);
     
     world.remove(this);
     enemies.remove(this);
-    player.setVelocity(5*jvx,5*jvy);
+    if(jvx>0){
+      player.setVelocity(350,150);
+    }
+    if(jvx<0){
+      player.setVelocity(-350,150);
+    }
     lives--;
     
     }else if (istouching("ice")){

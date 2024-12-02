@@ -50,9 +50,9 @@ void shoot(){
     jx=getX();
   jy= getY();
 
-  if(dist(player.getX(),player.getY(),getX(),getY())<400 ){
+  if(dist(player.getX(),player.getY(),getX(),getY())<400  ){
     
-    
+    //&& player.getX()>getX()+50 ||player.getX()<getX()
     // jvy= (jy-player.getY())/(jx-player.getX());
     //jvx=(jx-player.getX())/(jy-player.getY());
     //println("hi");
