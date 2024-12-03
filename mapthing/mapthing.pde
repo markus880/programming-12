@@ -33,6 +33,7 @@ color dpink= #EE8AF8;
 color maroon= #75163F;
 color beige= #EFE4B0;
 color dbrown= #880015;
+color block=#886F72;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -52,6 +53,7 @@ void setup() {
   over=2;
   mode=game;
   playerd=0;
+
   
 //  tp1x= ftp.getX();
 //tp1y= ftp.getY();
@@ -226,7 +228,8 @@ void loadworld(PImage img) {
   for (int y = 0; y< map.height; y++) {
 
     for (int x=0; x< map.width; x++) {
-      color c = map.get(x, y);
+          color c = map.get(x, y);
+    
       if (c == black && img.get(x,y-1)== black) {
 
         FBox b = new FBox(gridSize, gridSize);
@@ -351,8 +354,14 @@ void loadworld(PImage img) {
         enemies.add(bo);
         world.add(bo);
       }
-    }
+     
+          if(c==block){
+       blocks bl= new blocks(x*gridSize, y*gridSize);
+          terrain.add(bl);
+        world.add(bl); 
+      
+          }
   }
   
-  
+  } 
 }
