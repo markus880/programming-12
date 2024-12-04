@@ -10,12 +10,20 @@ class fshell extends FGameObject{
     setName("shell");
     setRotatable(false);
     setStatic(false);
-    setRestitution(2.6);
+    setRestitution(1.1);
+    setFriction(0);
+    
+    if(player.dir==l){
+        setVelocity(-500,0);
+   }
+   if(player.dir==r){
+        setVelocity(500,0);
+   }
   }
   
  void act(){
   
-        setVelocity(getVelocityX(),0);
+    setVelocity(getVelocityX(),0);
    }
  
  }

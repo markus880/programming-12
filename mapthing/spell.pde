@@ -17,7 +17,7 @@ class Fspell extends FGameObject{
   jx= getX();
   
   
-   jvy= -100*(jy-player.getY())/(jx-player.getX());
+   jvy= 200*(jy-player.getY())/(jx-player.getX());
    if(jx<player.getX()){
     jvx=200;       //(jx-player.getX())/(jy-player.getY());
     

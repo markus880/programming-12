@@ -15,7 +15,7 @@ class fwomp extends FGameObject{
   
  void act(){
   
-       if(player.getX()<getX()+gridSize &&player.getX()>getX()-gridSize){
+       if(player.getX()<getX()+gridSize &&player.getX()>getX()-gridSize && player.getY()>getY()){
          setStatic(false);
          setFillColor(red);
          

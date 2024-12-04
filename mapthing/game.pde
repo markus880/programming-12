@@ -3,7 +3,7 @@ void game(){
   actWorld();
   player.act();
   drawworld();
- 
+    time--;
 
   
 tp++;

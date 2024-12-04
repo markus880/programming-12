@@ -8,6 +8,7 @@ PImage[] goomba;
 PImage[] lava;
 float e=1;
 float tp=0;
+float time= 180;
 
 float respx, respy, tp1x,tp1y,tp2x,tp2y;
 PImage grass,brick, dirt,spike,ice,bridge,rail;
@@ -34,6 +35,7 @@ color maroon= #75163F;
 color beige= #EFE4B0;
 color dbrown= #880015;
 color block=#886F72;
+color aqua =#75EACC;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -259,7 +261,7 @@ void loadworld(PImage img) {
         world.add(jf);
       }
       if (c==pink) {
-        FGoomba gmb= new FGoomba(x*gridSize, gridSize);
+        FGoomba gmb= new FGoomba(x*gridSize, y*gridSize);
         enemies.add(gmb);
         world.add(gmb);
       }
@@ -360,6 +362,16 @@ void loadworld(PImage img) {
           terrain.add(bl);
         world.add(bl); 
       
+          }if (c==aqua){
+             FBox b = new FBox(gridSize, gridSize);
+         
+        b.setPosition(x*gridSize, y*gridSize);
+        b.setStatic(true);
+        b.setGrabbable(false);
+        b.setSensor(true);
+        b.setFriction(1);
+        b.setName("walls");
+        world.add(b);
           }
   }
   
