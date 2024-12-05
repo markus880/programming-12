@@ -6,6 +6,7 @@ PImage[]run;
 PImage[] action;
 PImage[] goomba;
 PImage[] lava;
+PImage[] wiz;
 float e=1;
 float tp=0;
 float time= 180;
@@ -83,6 +84,13 @@ void setup() {
   
   respx=respy=0;
   
+  wiz=new PImage[6];
+   for(int n=0;n<6;n++){
+  wiz[n]= loadImage ("frame_"+n+"_delay-0.11s.png");
+  wiz[n].resize(gridSize, gridSize);
+  
+  }
+  
   lives=3;
   terrain= new ArrayList<FGameObject>();
     enemies= new ArrayList<FGameObject>();
@@ -97,6 +105,7 @@ void setup() {
   lava[n].resize(gridSize, gridSize);
   
   }
+  
   
   
 
@@ -363,15 +372,9 @@ void loadworld(PImage img) {
         world.add(bl); 
       
           }if (c==aqua){
-             FBox b = new FBox(gridSize, gridSize);
-         
-        b.setPosition(x*gridSize, y*gridSize);
-        b.setStatic(true);
-        b.setGrabbable(false);
-        b.setSensor(true);
-        b.setFriction(1);
-        b.setName("walls");
-        world.add(b);
+         wally wa= new wally(x*gridSize, y*gridSize);
+          terrain.add(wa);
+        world.add(wa); 
           }
   }
   

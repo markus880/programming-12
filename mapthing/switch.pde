@@ -11,6 +11,7 @@ class fswitch extends FGameObject{
     setName("switch");
     setRotatable(false);
     setStatic(true);
+     setSensor(true);
   }
   
  void act(){

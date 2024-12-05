@@ -17,14 +17,27 @@ class Fjeff extends FGameObject {
     shoot();
   }
   void animate(){
-    if (frame>=goomba.length) frame=0;
+    if (frame>=wiz.length) frame=0;
     if (frameCount %5==0){
-      if (direction==r)attachImage(goomba[frame]);
-            if (direction==l)attachImage(reverseImage(goomba[frame]));
+      if (direction==r)attachImage(wiz[frame]);
+            if (direction==l)attachImage(reverseImage(wiz[frame]));
             frame++;
     }
   }
 void collide(){
+  
+    if(istouching("walls")&&direction>0){
+       setVelocity(-50,0);
+  
+     direction*=-1;
+  
+  }
+   if(istouching("walls")&&direction<0){
+       setVelocity(50,0);
+  
+     direction*=-1;
+  
+  }
   if(istouching("wall")){
     direction*=-1;
     setPosition(getX()+direction,getY());

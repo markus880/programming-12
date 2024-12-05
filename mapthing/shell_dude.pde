@@ -22,8 +22,21 @@ class Fshellg extends FGameObject {
     }
   }
 void collide(){
-  if(istouching("wall")||istouching("walls")){
+  if(istouching("walls")&&direction>0){
+       setVelocity(-50,0);
+  
+     direction*=-1;
+  
+  }
+   if(istouching("walls")&&direction<0){
+       setVelocity(50,0);
+  
+     direction*=-1;
+  
+  }
+  if(istouching("wall")){
     direction*=-1;
+  
     setPosition(getX()+direction,getY());
   }
   if (istouching("player")){
