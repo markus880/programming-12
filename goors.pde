@@ -46,6 +46,7 @@ void collide(){
     if (player.getY()<getY()-gridSize/1.5){
     world.remove(this);
     enemies.remove(this);
+    e=45;
     player.setVelocity(player.getVelocityX(), -300);
     }else{
 

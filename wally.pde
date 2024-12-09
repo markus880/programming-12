@@ -4,8 +4,8 @@
     
     super();
      setPosition(x, y);
-
-    setFillColor(red);
+attachImage(grass);
+   setImageAlpha(0);
     
     
    

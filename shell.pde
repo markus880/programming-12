@@ -25,6 +25,9 @@ class fshell extends FGameObject{
  void act(){
   
     setVelocity(getVelocityX(),0);
+  if(istouching("goomba")){
+    setVelocity(getVelocityX(),0);
+       }
    }
  
  }

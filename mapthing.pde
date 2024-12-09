@@ -13,7 +13,7 @@ float tp=0;
 float time= 180;
 
 float respx, respy, tp1x,tp1y,tp2x,tp2y;
-PImage grass,brick, dirt,spike,ice,bridge,rail,sleep,attack,trampo,background,tele,shell;
+PImage grass,brick, dirt,spike,ice,bridge,rail,sleep,attack,trampo,background,tele,shell,nograss,ghost;
 
 boolean switchy;
 int lives,game,over,intro,mode,playerd;
@@ -68,6 +68,7 @@ void setup() {
   
  switchy= false; 
  shell=loadImage("shell.png");
+ ghost=loadImage("ghost.png");
  background=loadImage("background.jpg");
  trampo=loadImage("trampoline.png");
  sleep=loadImage("thwomp0.png");
@@ -92,6 +93,9 @@ void setup() {
   rail.resize(gridSize , gridSize);
   trampo.resize(gridSize , gridSize);
     shell.resize(gridSize , gridSize-10);
+    nograss= loadImage("grassoff.jpg");
+    nograss.resize(gridSize,gridSize);
+    ghost.resize(gridSize,gridSize);
   
   respx=respy=0;
   

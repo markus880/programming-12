@@ -16,6 +16,7 @@ class ftramp extends FGameObject{
  void act(){
    if (istouching("player")){
 player.setVelocity(0,-600);
+e=55;
      
    }
  

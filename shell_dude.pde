@@ -43,6 +43,7 @@ void collide(){
     if (player.getY()<getY()-gridSize/1.5){
     world.remove(this);
     enemies.remove(this);
+    e=45;
     
      fshell s= new fshell(getX(), getY()-10);
 

@@ -11,17 +11,18 @@ class blocks extends FGameObject{
     setRotatable(false);
     setStatic(true);
     setSensor(true);
-      setFillColor(red);
+
+      attachImage(nograss);
   }
   
  void act(){
    if (switchy==true){
      setSensor(false);
-     setFillColor(black);
+     attachImage(grass);
    }
       if (switchy==false){
      setSensor(true);
-     setFillColor(red);
+   attachImage(nograss);
    }
   
   

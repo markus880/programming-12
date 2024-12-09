@@ -8,7 +8,7 @@ class Fboo extends FGameObject{
 
     setName("jeff");
     setRotatable(false);
-    setFillColor(red);
+    attachImage(ghost);
    
   }
  
@@ -43,7 +43,8 @@ class Fboo extends FGameObject{
    jvy= 80*(-player.getY()+20+jy)/(jx-player.getX());
    if(jvy>100)jvy=100;
    if(jx<player.getX()){
-    jvx=60;       //(jx-player.getX())/(jy-player.getY());
+    jvx=60;   
+   //(jx-player.getX())/(jy-player.getY());
     
    }
    

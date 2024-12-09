@@ -12,6 +12,11 @@ class FGoomba extends FGameObject {
     animate();
     collide();
     move();
+       if(istouching("shell")){
+         setSensor(true);
+             world.remove(this);
+    enemies.remove(this);
+       }
   }
   void animate(){
     if (frame>=goomba.length) frame=0;
@@ -23,13 +28,13 @@ class FGoomba extends FGameObject {
   }
 void collide(){
   
-    if(istouching("walls")&&direction>0){
+    if(istouching("walls")&&direction==l){
        setVelocity(-50,0);
   
      direction*=-1;
   
   }
-   if(istouching("walls")&&direction<0){
+   if(istouching("walls")&&direction==r){
        setVelocity(50,0);
   
      direction*=-1;
@@ -44,6 +49,7 @@ void collide(){
     if (player.getY()<getY()-gridSize/1.5){
     world.remove(this);
     enemies.remove(this);
+    e=45;
     player.setVelocity(player.getVelocityX(), -300);
     }else{
 
