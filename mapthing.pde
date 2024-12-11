@@ -12,11 +12,11 @@ float e=1;
 float tp=0;
 float time= 180;
 
-float respx, respy, tp1x,tp1y,tp2x,tp2y;
-PImage grass,brick, dirt,spike,ice,bridge,rail,sleep,attack,trampo,background,tele,shell,nograss,ghost;
+float respx, respy, tp1x, tp1y, tp2x, tp2y, ll;
+PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl;
 
 boolean switchy;
-int lives,game,over,intro,mode,playerd;
+int lives, game, over, intro, mode, playerd, l2;
 FWorld world;
 FPlayer player;
 ArrayList<FGameObject> terrain;
@@ -38,6 +38,7 @@ color beige= #EFE4B0;
 color dbrown= #880015;
 color block=#886F72;
 color aqua =#75EACC;
+color greyblue=#7092BE;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -52,86 +53,80 @@ boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
 int frame= 0;
 
 void setup() {
+  ll=0;
   game=0;
-  intro=1;
-  over=2;
-  mode=game;
+  l2=1;
+  intro=3;
+  over=4;
+  mode=l2;
   playerd=0;
-  
 
-  
-//  tp1x= ftp.getX();
-//tp1y= ftp.getY();
 
-//tp2x= ftp2.getX();
-//tp2y= ftp2.getY();
-  
- switchy= false; 
- shell=loadImage("shell.png");
- ghost=loadImage("ghost.png");
- background=loadImage("background.jpg");
- trampo=loadImage("trampoline.png");
- sleep=loadImage("thwomp0.png");
+
+
+  switchy= false;
+  shell=loadImage("shell.png");
+  ghost=loadImage("ghost.png");
+  background=loadImage("background.jpg");
+  trampo=loadImage("trampoline.png");
+  sleep=loadImage("thwomp0.png");
   attack=loadImage("thwomp1.png");
   rail= loadImage("rail.png");
   spike=loadImage("spike.png");
   dirt= loadImage("dirt.jpg");
   brick = loadImage("brick.jpg");
-   grass= loadImage("grasstext.jpg");
-   bridge= loadImage("bridge.png");
-   ice= loadImage("Ice.png");
-   tele=loadImage("tp.png");
-   tele.resize(gridSize, gridSize);
-   attack.resize(gridSize,gridSize);
-   sleep.resize(gridSize,gridSize);
-  grass.resize(gridSize,gridSize);
-  brick.resize(gridSize,gridSize);
-  dirt.resize(gridSize, gridSize);  
+  grass= loadImage("grasstext.jpg");
+  bridge= loadImage("bridge.png");
+  ice= loadImage("Ice.png");
+  tele=loadImage("tp.png");
+  tele.resize(gridSize, gridSize);
+  attack.resize(gridSize, gridSize);
+  sleep.resize(gridSize, gridSize);
+  grass.resize(gridSize, gridSize);
+  brick.resize(gridSize, gridSize);
+  dirt.resize(gridSize, gridSize);
   spike.resize(gridSize, gridSize);
   ice.resize(gridSize, gridSize);
-  bridge.resize(gridSize,gridSize);
-  rail.resize(gridSize , gridSize);
-  trampo.resize(gridSize , gridSize);
-    shell.resize(gridSize , gridSize-10);
-    nograss= loadImage("grassoff.jpg");
-    nograss.resize(gridSize,gridSize);
-    ghost.resize(gridSize,gridSize);
-  
+  bridge.resize(gridSize, gridSize);
+  rail.resize(gridSize, gridSize);
+  trampo.resize(gridSize, gridSize);
+  shell.resize(gridSize, gridSize-10);
+  nograss= loadImage("grassoff.jpg");
+  nograss.resize(gridSize, gridSize);
+  ghost.resize(gridSize, gridSize);
+
   respx=respy=0;
-  
-  
-    spe=new PImage[64];
-   for(int n=0;n<64;n++){
-  spe[n]= loadImage ("frame_"+n+"_delay-0.03s.gif");
-  spe[n].resize(gridSize, gridSize);
-  
+
+
+  spe=new PImage[64];
+  for (int n=0; n<64; n++) {
+    spe[n]= loadImage ("frame_"+n+"_delay-0.03s.gif");
+    spe[n].resize(gridSize, gridSize);
   }
-  
-  
+
+
   wiz=new PImage[6];
-   for(int n=0;n<6;n++){
-  wiz[n]= loadImage ("frame_"+n+"_delay-0.11s.png");
-  wiz[n].resize(gridSize, gridSize);
-  
+  for (int n=0; n<6; n++) {
+    wiz[n]= loadImage ("frame_"+n+"_delay-0.11s.png");
+    wiz[n].resize(gridSize, gridSize);
   }
-  
+
   lives=3;
   terrain= new ArrayList<FGameObject>();
-    enemies= new ArrayList<FGameObject>();
-    bullets=new ArrayList<FGameObject>();
+  enemies= new ArrayList<FGameObject>();
+  bullets=new ArrayList<FGameObject>();
   size(1440, 840);
   Fisica.init(this);
-  
+
   lava=new PImage[35];
-  
-  for(int n=0;n<35;n++){
-  lava[n]= loadImage ("frame_"+n+"_delay-0.07s.gif");
-  lava[n].resize(gridSize, gridSize);
-  
+
+  for (int n=0; n<35; n++) {
+    lava[n]= loadImage ("frame_"+n+"_delay-0.07s.gif");
+    lava[n].resize(gridSize, gridSize);
   }
-  
-  
-  
+
+
+
 
   goomba=new PImage[8];
 
@@ -143,18 +138,18 @@ void setup() {
   goomba[5]=loadImage("aframe_0_delay-0.16s (6).gif");
   goomba[6]=loadImage("aframe_0_delay-0.16s (7).gif");
   goomba[7]=loadImage("aframe_0_delay-0.16s (8).gif");
-  for(int p=0;p<8;p++){
-    goomba[p].resize(gridSize,gridSize);
+  for (int p=0; p<8; p++) {
+    goomba[p].resize(gridSize, gridSize);
   }
 
   idle= new PImage[1];
 
   idle[0]= loadImage("frame_02_delay-0.08s.png");
-  idle[0].resize(gridSize,gridSize);
+  idle[0].resize(gridSize, gridSize);
 
   jump= new PImage[1];
   jump[0]= loadImage("frame_04_delay-0.08s.png");
-  jump[0].resize(gridSize,gridSize);
+  jump[0].resize(gridSize, gridSize);
 
   run= new PImage[12];
   run[0]= loadImage("frame_00_delay-0.08s.png");
@@ -170,18 +165,18 @@ void setup() {
   run[10]= loadImage("frame_010_delay-0.08s.png");
   run[11]= loadImage("frame_11_delay-0.08s.png");
 
-  run[0].resize(gridSize,gridSize);
-  run[1].resize(gridSize,gridSize);
-  run[2].resize(gridSize,gridSize);
-  run[3].resize(gridSize,gridSize);
-  run[4].resize(gridSize,gridSize);
-  run[5].resize(gridSize,gridSize);
-  run[6].resize(gridSize,gridSize);
-  run[7].resize(gridSize,gridSize);
-  run[8].resize(gridSize,gridSize);
-  run[9].resize(gridSize,gridSize);
-  run[10].resize(gridSize,gridSize);
-  run[11].resize(gridSize,gridSize);
+  run[0].resize(gridSize, gridSize);
+  run[1].resize(gridSize, gridSize);
+  run[2].resize(gridSize, gridSize);
+  run[3].resize(gridSize, gridSize);
+  run[4].resize(gridSize, gridSize);
+  run[5].resize(gridSize, gridSize);
+  run[6].resize(gridSize, gridSize);
+  run[7].resize(gridSize, gridSize);
+  run[8].resize(gridSize, gridSize);
+  run[9].resize(gridSize, gridSize);
+  run[10].resize(gridSize, gridSize);
+  run[11].resize(gridSize, gridSize);
 
 
 
@@ -193,16 +188,17 @@ void setup() {
 
 
   map = loadImage("mapy.png");
+  sl=loadImage("2.png");
 
-  loadworld(map);
-   
-  loadplayer();
+  // loadworld(map);
+
+  //  loadplayer();
 }
 
 
 
 void loadplayer() {
-  player = new FPlayer(respx,respy);
+  player = new FPlayer(respx, respy);
   world.add(player);
 }
 void draw() {
@@ -210,9 +206,12 @@ void draw() {
 
 
 
-  
-   if ( mode==game) {
+
+  if ( mode==game) {
     game();
+  }
+  if (mode==l2) {
+    secondlev();
   }
   if (mode==over) {
     gameover();
@@ -250,8 +249,6 @@ void drawworld() {
 
 
   popMatrix();
-  
-  
 }
 
 void loadworld(PImage img) {
@@ -261,36 +258,36 @@ void loadworld(PImage img) {
 
 
 
-  for (int y = 0; y< map.height; y++) {
+  for (int y = 0; y< img.height; y++) {
 
-    for (int x=0; x< map.width; x++) {
-          color c = map.get(x, y);
+    for (int x=0; x< img.width; x++) {
+      color c = img.get(x, y);
 
-    
-      if (c == black && img.get(x,y-1)== black) {
+
+      if (c == black && img.get(x, y-1)== black) {
 
         FBox b = new FBox(gridSize, gridSize);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(6);
-      
+
         b.attachImage(grass);
         b.setName("stone");
         world.add(b);
-      }else if(c==black){
-            FBox b = new FBox(gridSize, gridSize);
+      } else if (c==black) {
+        FBox b = new FBox(gridSize, gridSize);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(6);
-        
+
         b.attachImage(grass);
-          b.setName("stone");
+        b.setName("stone");
         world.add(b);
       }
       if (c== green) {
-        
+
         Fjeff jf=new Fjeff(x*gridSize, y*gridSize);
         enemies.add(jf);
         world.add(jf);
@@ -302,7 +299,7 @@ void loadworld(PImage img) {
       }
       if (c==red) {
         FBox b = new FBox(gridSize, gridSize);
-    
+
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
@@ -317,15 +314,14 @@ void loadworld(PImage img) {
         world.add(br);
       }
       if (c==brown) {
-  Flava la= new Flava(x*gridSize, y*gridSize);
-  
+        Flava la= new Flava(x*gridSize, y*gridSize);
+
         terrain.add(la);
         world.add(la);
-        
       }
       if (c==yellow) {
         FBox b = new FBox(gridSize, gridSize);
-         b.attachImage(grass);
+        b.attachImage(grass);
         b.setPosition(x*gridSize, y*gridSize);
         b.setStatic(true);
         b.setGrabbable(false);
@@ -340,69 +336,70 @@ void loadworld(PImage img) {
         b.setStatic(true);
         b.setGrabbable(false);
         b.setFriction(0.5);
-             b.attachImage(ice);
+        b.attachImage(ice);
         b.setName("ice");
         world.add(b);
       }
-      if (c== purple){
-          fswitch sw= new fswitch(x*gridSize, y*gridSize);
-  
+      if (c== purple) {
+        fswitch sw= new fswitch(x*gridSize, y*gridSize);
+
         terrain.add(sw);
         world.add(sw);
-        
-      }if (c==dgreen){
+      }
+      if (c==dgreen) {
         fpoint fp= new fpoint(x*gridSize, y*gridSize);
-          terrain.add(fp);
+        terrain.add(fp);
         world.add(fp);
-        
-      }if (c==dblue){
-          ftramp tr= new ftramp(x*gridSize, y*gridSize);
-          terrain.add(tr);
+      }
+      if (c==dblue) {
+        ftramp tr= new ftramp(x*gridSize, y*gridSize);
+        terrain.add(tr);
         world.add(tr);
-      
-      }if(c==orange){
-         ftp tp= new ftp(x*gridSize, y*gridSize);
-          terrain.add(tp);
-        world.add(tp); 
-        
       }
-      if(c==dpink){
-                ftp2 tp2= new ftp2(x*gridSize, y*gridSize);
-          terrain.add(tp2);
-        world.add(tp2);  
+      if (c==orange) {
+        ftp tp= new ftp(x*gridSize, y*gridSize);
+        terrain.add(tp);
+        world.add(tp);
       }
-      if(c==maroon){
+      if (c==dpink) {
+        ftp2 tp2= new ftp2(x*gridSize, y*gridSize);
+        terrain.add(tp2);
+        world.add(tp2);
+      }
+      if (c==maroon) {
         Fshellg sg= new Fshellg(x*gridSize, y*gridSize);
-          enemies.add(sg);
-        world.add(sg);  
-        
-      }if (c==beige){
-        
-         fwomp wp= new fwomp(x*gridSize, y*gridSize);
+        enemies.add(sg);
+        world.add(sg);
+      }
+      if (c==beige) {
+
+        fwomp wp= new fwomp(x*gridSize, y*gridSize);
 
         enemies.add(wp);
         world.add(wp);
- 
- 
-        
-      }if(c==dbrown){
-          Fboo bo= new Fboo(x*gridSize, y*gridSize);
- 
+      }
+      if (c==dbrown) {
+        Fboo bo= new Fboo(x*gridSize, y*gridSize);
+
         enemies.add(bo);
         world.add(bo);
       }
-     
-          if(c==block){
-       blocks bl= new blocks(x*gridSize, y*gridSize);
-          terrain.add(bl);
-        world.add(bl); 
-      
-          }if (c==aqua){
-         wally wa= new wally(x*gridSize, y*gridSize);
-          terrain.add(wa);
-        world.add(wa); 
-          }
+
+      if (c==block) {
+        blocks bl= new blocks(x*gridSize, y*gridSize);
+        terrain.add(bl);
+        world.add(bl);
+      }
+      if (c==aqua) {
+        wally wa= new wally(x*gridSize, y*gridSize);
+        terrain.add(wa);
+        world.add(wa);
+      }
+      if (c==greyblue) {
+        newl nl= new newl(x*gridSize, y*gridSize);
+        terrain.add(nl);
+        world.add(nl);
+      }
+    }
   }
-  
-  } 
 }

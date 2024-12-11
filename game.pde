@@ -1,4 +1,11 @@
 void game(){
+  if(ll==0){
+
+  loadworld(map);
+  loadplayer();
+    
+   ll++;
+ }
    background(255);
   actWorld();
   player.act();
@@ -17,9 +24,9 @@ e--;
   if (lives<1){
   player.setPosition(respx, respy-20);
   lives =3;
+  ll=0;
   
-loadworld(map);
-  loadplayer();
+
     player.setPosition(respx, respy-60);
    }
   }

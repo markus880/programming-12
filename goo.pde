@@ -40,7 +40,7 @@ void collide(){
      direction*=-1;
   
   }
-  
+
   if(istouching("wall")){
     direction*=-1;
     setPosition(getX()+direction,getY());
