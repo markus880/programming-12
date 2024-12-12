@@ -3,18 +3,25 @@ class Fjeff extends FGameObject {
   int speed= 50;
   int frame= 0;
   float jx, jy, jvx, jvy;
+  float time= 180;
+  int k = 0;
 
   Fjeff(float x, float y) {
     super();
     setPosition(x, y);
     setName("jeff");
     setRotatable(false);
+    k = kladdy;
+    kladdy++;
   }
   void act() {
     animate();
     collide();
     move();
-    shoot();
+    if (time<0&&dist(player.getX(), player.getY(), getX(), getY())<400) {
+      shoot();
+    }
+    time--;
   }
   void animate() {
     if (frame>=wiz.length) frame=0;
@@ -68,11 +75,15 @@ class Fjeff extends FGameObject {
   void shoot() {
     jx=getX();
     jy= getY();
+    if (lives==0) {
+      time=180;
+    }
 
     if (dist(player.getX(), player.getY(), getX(), getY())<400  ) {
 
 
       if (time<0) {
+        print(k);
 
         Fspell sp= new Fspell(getX(), getY()-40);
         enemies.add(sp);

@@ -12,7 +12,7 @@ void game(){
   image(background,-100,-100);
   drawworld();
 
-    time--;
+
 
   
 tp++;

@@ -1,6 +1,7 @@
 class Fspell extends FGameObject {
   float jx, jy, jvx, jvy;
   int framees= int(random (0, 34));
+  int timer=300;
 
   Fspell(float x, float y) {
     super();
@@ -31,15 +32,18 @@ class Fspell extends FGameObject {
   }
 
   void act() {
-    print("s");
+    //print("s");
     animate();
-
+timer--;
 
     setVelocity(jvx, jvy);
     //circle(jx,jy,10);
     //jx=jx+jvx;
     //jy=jy-jvy;
-
+if(timer==0){
+  world.remove(this);
+      enemies.remove(this);
+}
 
     if (istouching("player")) {
 

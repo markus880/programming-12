@@ -12,7 +12,6 @@ void secondlev() {
   image(background, -100, -100);
   drawworld();
 
-  time--;
   println("2");
 
   tp++;

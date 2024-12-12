@@ -10,7 +10,8 @@ PImage[] wiz;
 PImage[]spe;
 float e=1;
 float tp=0;
-float time= 180;
+
+int kladdy = 0;
 
 float respx, respy, tp1x, tp1y, tp2x, tp2y, ll;
 PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl;
@@ -255,6 +256,8 @@ void loadworld(PImage img) {
 
   world = new FWorld(-2000, -2000, 200000, 2000);
   world.setGravity(0, 900);
+    terrain= new ArrayList<FGameObject>();
+  enemies= new ArrayList<FGameObject>();
 
 
 
