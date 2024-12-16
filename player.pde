@@ -19,7 +19,9 @@ class FPlayer extends FGameObject {
     hinput();
     animate();
  
-
+if(istouching("stone")){
+ 
+}
     
     if (istouching("spike")) {
         player.setVelocity(player.getVelocityX(), -500);
@@ -46,14 +48,18 @@ if(p1vy==0)action=idle;
       dir=l;
         action=run;
     }
-    if (wkey==true && p1vy<20 && p1vy>-20 && e<0) {
+    if (wkey==true && p1vy<20 && p1vy>-20 && e<0 ||(istouching("stone"))&&wkey==true) {
       player.setVelocity(p1vx, -400);
          e=45;
       if (abs(p1vy)>0.1) action=jump;
     }
-    if (skey==true) {
-     // player.setVelocity(p1vx, 250);
-   
+    if (spkey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0 ||(istouching("stone"))&&spkey==true&& grac<0 ) {
+     player.setVelocity(p1vx, 400);
+       e=45;
+    }
+    if (spkey==true && p1vy<20 && p1vy>-20 && e< 0&& grac>0 ||(istouching("stone"))&&skey==true&& grac>0 ) {
+     player.setVelocity(p1vx, -400);
+       e=45;
     }
   }
   

@@ -10,6 +10,7 @@ class ftramp extends FGameObject{
     setName("tramp");
     setRotatable(false);
     setStatic(true);
+    setSensor(true);
     
   }
   

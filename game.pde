@@ -3,9 +3,15 @@ void game(){
 
   loadworld(map);
   loadplayer();
-    
+    player.setPosition(respx, respy-60);
    ll++;
- }
+  }
+  //if(ll==200){
+  //    loadworld(map);
+  //    loadplayer();
+  //      player.setPosition(respx, respy-60);
+  //    ll=1;
+  //}
    background(255);
   actWorld();
   player.act();
@@ -14,7 +20,7 @@ void game(){
 
 
 
-  
+  println(respx,respy);
 tp++;
 
 
@@ -27,6 +33,7 @@ e--;
   ll=0;
   
 
-    player.setPosition(respx, respy-60);
+  
    }
+  
   }

@@ -10,14 +10,15 @@ PImage[] wiz;
 PImage[]spe;
 float e=1;
 float tp=0;
+float grac;
 
 int kladdy = 0;
 
 float respx, respy, tp1x, tp1y, tp2x, tp2y, ll;
-PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl;
+PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl,tl;
 
 boolean switchy;
-int lives, game, over, intro, mode, playerd, l2;
+int lives, game, over, intro, mode, playerd, l2,l3;
 FWorld world;
 FPlayer player;
 ArrayList<FGameObject> terrain;
@@ -50,22 +51,25 @@ float zoom=2;
 ArrayList<FGameObject> enemies;
 ArrayList<FGameObject> bullets;
 
-boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey;
+boolean wkey, skey, akey, dkey, upkey, downkey, lkey, rkey,xkey,spkey;
 int frame= 0;
 
 void setup() {
+  grac =900;
   ll=0;
   game=0;
   l2=1;
+  l3=2;
   intro=3;
   over=4;
-  mode=l2;
+  mode=l3;
   playerd=0;
 
 
 
 
   switchy= false;
+  tl=loadImage("3.png");
   shell=loadImage("shell.png");
   ghost=loadImage("ghost.png");
   background=loadImage("background.jpg");
@@ -213,6 +217,9 @@ void draw() {
   }
   if (mode==l2) {
     secondlev();
+  }
+  if(mode==l3){
+   thirdlev(); 
   }
   if (mode==over) {
     gameover();

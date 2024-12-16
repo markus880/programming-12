@@ -15,6 +15,8 @@ class newl extends FGameObject{
  void act(){
    if (istouching("player")){
          world.remove(this);
+         respx=respy=0;
+         switchy=false;
 mode++;
   ll=0;
    }
