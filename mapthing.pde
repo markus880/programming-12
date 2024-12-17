@@ -1,5 +1,8 @@
 import fisica.*;
 
+
+
+
 PImage [] idle;
 PImage[] jump;
 PImage[]run;
@@ -41,6 +44,7 @@ color dbrown= #880015;
 color block=#886F72;
 color aqua =#75EACC;
 color greyblue=#7092BE;
+color nims;
 PImage map;
 int gridSize=32;
 float zoom=2;
@@ -62,12 +66,13 @@ void setup() {
   l3=2;
   intro=3;
   over=4;
-  mode=l3;
+  mode=intro;
   playerd=0;
 
 
 
 
+  
   switchy= false;
   tl=loadImage("3.png");
   shell=loadImage("shell.png");
