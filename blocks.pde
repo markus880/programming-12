@@ -7,7 +7,7 @@ class blocks extends FGameObject{
      setPosition(x, y);
 
     
-    setName("bridge");
+    setName("onoff");
     setRotatable(false);
     setStatic(true);
     setSensor(true);

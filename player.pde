@@ -37,35 +37,43 @@ if(istouching("stone")){
     float p1vx = player.getVelocityX();
     float p1vy = player.getVelocityY();
 if(p1vy==0)action=idle;
-    if (dkey==true) {
+    if (dkey==true&&akey==false) {
       player.setVelocity(250, p1vy);
       action=run;
       dir=r;
     }
 
-    if (akey==true) {
+    else if (akey==true&&skey==false) {
       player.setVelocity(-250, p1vy);
       dir=l;
         action=run;
     }
-    if (wkey==true && p1vy<20 && p1vy>-20 && e<0&& grac>0 ||(istouching("stone"))&&wkey==true&& grac>0 ) {
-      player.setVelocity(p1vx, -400);
-         e=45;
+    if (wkey==true && p1vy<20 && p1vy>-20 && e<0&& grac>0) {
+      setVelocity(p1vx, -400);
+         e=25;
       if (abs(p1vy)>0.1) action=jump;
     }
-     if (skey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0 ||(istouching("stone"))&&skey==true&& grac<0) {
-      player.setVelocity(p1vx, 400);
-         e=45;
+     if (skey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0 ) {
+      setVelocity(p1vx, 400);
+         e=25;
       if (abs(p1vy)>0.1) action=jump;
     }
-    if (spkey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0 ||(istouching("stone"))&&spkey==true&& grac<0 ) {
-     player.setVelocity(p1vx, 400);
-       e=45;
+    if (spkey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0  ) {
+     setVelocity(p1vx, 400);
+       e=25;
     }
-    if (spkey==true && p1vy<20 && p1vy>-20 && e< 0&& grac>0 ||(istouching("stone"))&&spkey==true&& grac>0 ) {
-     player.setVelocity(p1vx, -400);
-       e=45;
+    if (spkey==true && p1vy<20 && p1vy>-20 && e< 0&& grac>0 ) {
+     setVelocity(p1vx, -400);
+       e=25;
     }
+    if(dkey==true && akey==false&&player.getVelocityX()<50){
+     player.setVelocity(player.getVelocityX(),-21); 
+    }if(akey==true &&player.getVelocityX()>-50){
+     setVelocity(player.getVelocityX(),-21); 
+    }
+  //  if(akey==true&&dkey==true){
+  //      player.setVelocity(0,getVelocityY()); 
+  //}
   }
   
   

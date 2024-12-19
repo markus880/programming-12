@@ -26,8 +26,8 @@ class Fjeff extends FGameObject {
   void animate() {
     if (frame>=wiz.length) frame=0;
     if (frameCount %5==0) {
-      if (direction==r)attachImage(wiz[frame]);
-      if (direction==l)attachImage(reverseImage(wiz[frame]));
+      if (direction==l)attachImage(wiz[frame]);
+      if (direction==r)attachImage(reverseImage(wiz[frame]));
       frame++;
     }
   }

@@ -17,8 +17,8 @@ float grac;
 
 int kladdy = 0;
 
-float respx, respy, tp1x, tp1y, tp2x, tp2y, ll;
-PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl,tl;
+float respx, respy, tp1x, tp1y, tp2x, tp2y, ll,app1,app2,app3;
+PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl,tl,skell;
 
 boolean switchy;
 int lives, game, over, intro, mode, playerd, l2,l3;
@@ -26,6 +26,7 @@ FWorld world;
 FPlayer player;
 ArrayList<FGameObject> terrain;
 color black= #000000;
+color puke=#72FF3F;
 color green= #B5E61D;
 color brown= #B97A57;
 color blue= #99D9EA;
@@ -62,17 +63,20 @@ void setup() {
   grac =900;
   ll=0;
   game=0;
-  l2=1;
-  l3=2;
-  intro=3;
-  over=4;
+  app1=1;
+  l2=2;
+  app2=3;
+  l3=4;
+  app3=5;
+  intro=30;
+  over=40;
   mode=intro;
   playerd=0;
 
 
 
 
-  
+skell=loadImage("frame_02_delay-0.08s.png");  
   switchy= false;
   tl=loadImage("3.png");
   shell=loadImage("shell.png");
@@ -231,6 +235,13 @@ void draw() {
   }
   if (mode==intro) {
     intro();
+  }
+  if(mode==app1) {
+    ap1();
+  }if(mode==app2) {
+    ap2();
+  }if(mode==app3) {
+    ap3();
   }
 }
 
@@ -414,6 +425,11 @@ void loadworld(PImage img) {
         newl nl= new newl(x*gridSize, y*gridSize);
         terrain.add(nl);
         world.add(nl);
+      }
+       if (c==puke) {
+        bar ps= new bar(x*gridSize, y*gridSize);
+        terrain.add(ps);
+        world.add(ps);
       }
     }
   }

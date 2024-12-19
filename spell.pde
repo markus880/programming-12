@@ -44,7 +44,12 @@ if(timer==0){
   world.remove(this);
       enemies.remove(this);
 }
+if (istouching("bar")) {
 
+      world.remove(this);
+      enemies.remove(this);
+     
+}
     if (istouching("player")) {
 
       world.remove(this);
