@@ -43,14 +43,16 @@ void collide(){
     if (player.getY()<getY()-gridSize/1.5){
     world.remove(this);
     enemies.remove(this);
+    mondead.rewind();
+    mondead.play();
     e=45;
     
      fshell s= new fshell(getX(), getY()-10);
-
-        enemies.add(s);
-        world.add(s);
+player.setPosition(player.getX(),player.getY()-5);
+     
     player.setVelocity(player.getVelocityX(), -300);
- 
+    enemies.add(s);
+        world.add(s);
     }else{
 
      lives--;

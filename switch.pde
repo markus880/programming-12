@@ -5,8 +5,7 @@ class fswitch extends FGameObject{
     super();
      setPosition(x, y);
 
-  if (switchy==false)setFillColor(blue);
-    if (switchy==true)setFillColor(red);
+   attachImage(reverseImage(lever));
    
     setName("switch");
     setRotatable(false);
@@ -20,13 +19,13 @@ class fswitch extends FGameObject{
      setSensor(true);
      if(player.getVelocityX()>0){
        switchy=true;
+       attachImage(lever);
      }
-     if( player.getVelocityX()<0){
+     else if( player.getVelocityX()<0){
        switchy=false;
+       attachImage(reverseImage(lever));
      }
    }
-  if (switchy==false)setFillColor(blue);
-    if (switchy==true)setFillColor(red);
   
  }
 }

@@ -7,6 +7,7 @@ class FGoomba extends FGameObject {
     setPosition(x,y);
     setName("goomba");
     setRotatable(false);
+   // setSensor(true);
   }
   void act(){
     animate();
@@ -49,6 +50,8 @@ void collide(){
     if (player.getY()<getY()-gridSize/1.5){
     world.remove(this);
     enemies.remove(this);
+    mondead.rewind();
+    mondead.play();
     e=45;
     player.setVelocity(player.getVelocityX(), -300);
     }else{

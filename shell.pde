@@ -28,6 +28,18 @@ class fshell extends FGameObject{
   if(istouching("goomba")){
     setVelocity(getVelocityX(),0);
        }
+       
+        if(istouching("player")){
+         
+lives--;
+          
+       }
+    
+       if(getVelocityX()< 50 && getVelocityX()>-50 ){
+    world.remove(this);
+    enemies.remove(this);
+  
+}
    }
  
  }

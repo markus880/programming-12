@@ -60,6 +60,8 @@ class Fjeff extends FGameObject {
       if (player.getY()<getY()-gridSize/1.5) {
         world.remove(this);
         enemies.remove(this);
+        mondead.rewind();
+    mondead.play();
         e=45;
         player.setVelocity(player.getVelocityX(), -300);
       } else {

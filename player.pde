@@ -52,18 +52,28 @@ if(p1vy==0)action=idle;
       setVelocity(p1vx, -400);
          e=25;
       if (abs(p1vy)>0.1) action=jump;
+           jumps.rewind();
+       jumps.play();
     }
      if (skey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0 ) {
       setVelocity(p1vx, 400);
          e=25;
       if (abs(p1vy)>0.1) action=jump;
+           jumps.rewind();
+       jumps.play();
     }
     if (spkey==true && p1vy<20 && p1vy>-20 && e<0&& grac<0  ) {
      setVelocity(p1vx, 400);
+          jumps.rewind();
+       jumps.play();
+       if (abs(p1vy)>0.1) action=jump;
        e=25;
     }
     if (spkey==true && p1vy<20 && p1vy>-20 && e< 0&& grac>0 ) {
      setVelocity(p1vx, -400);
+          jumps.rewind();
+       jumps.play();
+       if (abs(p1vy)>0.1) action=jump;
        e=25;
     }
     if(dkey==true && akey==false&&player.getVelocityX()<50){

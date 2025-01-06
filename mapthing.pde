@@ -1,7 +1,18 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+
+
 import fisica.*;
 
 
+AudioPlayer games, boing,mondead,spell,talking,jumps,check;
 
+Minim minim;
 
 PImage [] idle;
 PImage[] jump;
@@ -18,7 +29,7 @@ float grac;
 int kladdy = 0;
 
 float respx, respy, tp1x, tp1y, tp2x, tp2y, ll,app1,app2,app3;
-PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl,tl,skell;
+PImage grass, brick, dirt, spike, ice, bridge, rail, sleep, attack, trampo, background, tele, shell, nograss, ghost, sl,tl,skell,bridget,bridget2,jewel,lever,goblin,flag;
 
 boolean switchy;
 int lives, game, over, intro, mode, playerd, l2,l3;
@@ -51,7 +62,7 @@ int gridSize=32;
 float zoom=2;
 
 
-
+int o=0;
 
 ArrayList<FGameObject> enemies;
 ArrayList<FGameObject> bullets;
@@ -70,12 +81,33 @@ void setup() {
   app3=5;
   intro=30;
   over=40;
-  mode=intro;
+  mode=30;
   playerd=0;
 
+ minim = new Minim(this);
 
 
+ jumps= minim.loadFile("jump.mp3");
+ boing = minim.loadFile("boing.mp3");
+  mondead=minim.loadFile("mondead.mp3");
+  spell=minim.loadFile("spell.mp3");
+  talking =  minim.loadFile("talking.mp3");
+  games=minim.loadFile("background.mp3");
+  check=minim.loadFile("check.mp3");
 
+flag=loadImage("point.png");
+flag.resize(gridSize,gridSize);
+goblin=loadImage("goblin.png");
+goblin.resize(gridSize, gridSize);
+lever=loadImage("lever.png");
+lever.resize(gridSize,gridSize);
+jewel=loadImage("jewel.png");
+jewel.resize(gridSize,gridSize);
+bridget2=loadImage("bridget2.png");
+bridget2.resize(140,145);
+
+bridget=loadImage("bridget.png");
+bridget.resize(gridSize,gridSize);
 skell=loadImage("frame_02_delay-0.08s.png");  
   switchy= false;
   tl=loadImage("3.png");

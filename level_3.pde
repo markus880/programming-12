@@ -1,10 +1,13 @@
 void thirdlev() {
   if (ll==0) {
-
+games.rewind();
+   games.play();
     loadworld(tl);
     loadplayer();
   player.setPosition(respx, respy-60);
+  switchy=true;
     ll++;
+    
   }
   background(255);
   actWorld();

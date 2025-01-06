@@ -6,7 +6,8 @@ class fpoint extends FGameObject{
      setPosition(x, y);
 
  
-   
+   attachImage(flag);
+   setSensor(true);
     setName("point");
     setRotatable(false);
     setStatic(true);
@@ -16,8 +17,15 @@ class fpoint extends FGameObject{
    if (istouching("player")){
      setStatic(true);
      setSensor(false);
-    respx= getX();
+       respy= getY();
+        respx= getX();
     respy= getY();
+    //if(player.getX()==getX()){
+    //check.rewind();
+    //check.play();
+    
+    //}   
+   
    }
   
  }

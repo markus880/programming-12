@@ -17,6 +17,8 @@ class ftramp extends FGameObject{
  void act(){
    if (istouching("player")){
 player.setVelocity(0,-600);
+boing.rewind();
+    boing.play();
 e=55;
      
    }

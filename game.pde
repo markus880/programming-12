@@ -1,6 +1,8 @@
 void game(){
+  
   if(ll==0){
-
+games.rewind();
+   games.play();
   loadworld(map);
   loadplayer();
     player.setPosition(respx, respy-60);

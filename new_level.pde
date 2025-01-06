@@ -4,7 +4,15 @@ class newl extends FGameObject{
     
     super();
      setPosition(x, y);
-
+ if(mode==0){
+attachImage(bridget);
+     }
+       if(mode==2){
+attachImage(jewel);
+     }
+     if (mode==4){
+      attachImage(goblin); 
+     }
  
    
     setName("point");
