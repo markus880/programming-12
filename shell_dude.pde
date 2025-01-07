@@ -48,7 +48,7 @@ void collide(){
     e=45;
     
      fshell s= new fshell(getX(), getY()-10);
-player.setPosition(player.getX(),player.getY()-5);
+player.setPosition(player.getX(),player.getY()-25);
      
     player.setVelocity(player.getVelocityX(), -300);
     enemies.add(s);

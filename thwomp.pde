@@ -1,7 +1,7 @@
 class fwomp extends FGameObject{
    
   fwomp(float x, float y){
-    
+   
     super();
      setPosition(x, y);
 
@@ -11,6 +11,7 @@ class fwomp extends FGameObject{
     setRotatable(false);
     setStatic(true);
      attachImage(sleep);
+          womp.rewind();
   }
   
  void act(){
@@ -19,6 +20,8 @@ class fwomp extends FGameObject{
          attachImage(attack);
          setStatic(false);
          setFillColor(red);
+         womp.play();
+     
          
        }
         if (istouching("player")){

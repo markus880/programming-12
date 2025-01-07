@@ -17,11 +17,17 @@ class fswitch extends FGameObject{
    if (istouching("player")){
      setStatic(true);
      setSensor(true);
-     if(player.getVelocityX()>0){
+     if(player.getVelocityX()>10){
        switchy=true;
        attachImage(lever);
+       leve.play();
+           leve.rewind();
+       
      }
-     else if( player.getVelocityX()<0){
+     else if( player.getVelocityX()<-10){
+         leve.play();
+       leve.rewind();
+     
        switchy=false;
        attachImage(reverseImage(lever));
      }

@@ -25,6 +25,7 @@ attachImage(jewel);
          world.remove(this);
          respx=respy=0;
          switchy=false;
+             check.rewind();
 mode++;
   ll=0;
    }

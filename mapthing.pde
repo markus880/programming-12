@@ -10,7 +10,7 @@ import ddf.minim.ugens.*;
 import fisica.*;
 
 
-AudioPlayer games, boing,mondead,spell,talking,jumps,check;
+AudioPlayer games, boing,mondead,spell,talking,jumps,check,leve,womp;
 
 Minim minim;
 
@@ -86,7 +86,8 @@ void setup() {
 
  minim = new Minim(this);
 
-
+womp=minim.loadFile("thwomp.mp3");
+leve=minim.loadFile("lever.mp3");
  jumps= minim.loadFile("jump.mp3");
  boing = minim.loadFile("boing.mp3");
   mondead=minim.loadFile("mondead.mp3");

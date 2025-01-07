@@ -20,11 +20,11 @@ class fpoint extends FGameObject{
        respy= getY();
         respx= getX();
     respy= getY();
-    //if(player.getX()==getX()){
-    //check.rewind();
-    //check.play();
+   
+
+    check.play();
     
-    //}   
+  
    
    }
   

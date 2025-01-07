@@ -10,6 +10,8 @@
   appclicks();
  }else if(mode==app3){
    mode=over;
+     talking.pause();
+  talking.rewind();
  }
   
 }

@@ -22,6 +22,8 @@ void intro(){
 void introclicks(){
   if(mouseX>400 && mouseX<1040 && mouseY>500 && mouseY<700){
   mode = game;
+      leve.play();
+           leve.rewind();
   lives=3;
    loadworld(map);
   loadplayer();

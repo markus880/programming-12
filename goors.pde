@@ -86,7 +86,8 @@ class Fjeff extends FGameObject {
 
       if (time<0) {
         print(k);
-
+spell.play();
+spell.rewind();
         Fspell sp= new Fspell(getX(), getY()-40);
         enemies.add(sp);
         world.add(sp);
