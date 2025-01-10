@@ -1,6 +1,6 @@
 boolean wkey, akey, skey, dkey;
 
-float eyeX, eyeY,eyeZ,focusX, focusY, focusZ,tiltX,tiltY,tiltZ;
+float eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ, leftRightHeadAngle, upDownHeadAngle;
 void setup() {
   size(1440, 840, P3D);
   textureMode(NORMAL);
@@ -14,20 +14,18 @@ void setup() {
   tiltX=0;
   tiltY=1;
   tiltZ=0;
-  
-  
-  
-  
+noCursor();
+  leftRightHeadAngle=radians(45);
 }
 
 
 void draw() {
   background(0);
- camera(eyeX,eyeY,eyeZ,focusX,focusY,focusZ,tiltX,tiltY,tiltZ);
+  camera(eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ);
   drawFloor();
+    drawFocus();
   controlCamera();
-  drawFocus();
-  
+
 }
 
 
@@ -56,24 +54,42 @@ void drawFloor() {
   }
 }
 
-void controlCamera(){
+void controlCamera() {
+
+  if (wkey){
+    eyeX=eyeX+cos(leftRightHeadAngle)*10;;
+    eyeZ=eyeZ+sin(leftRightHeadAngle)*10;;
+  }
+  if (skey){
+    
+    eyeX=eyeX-cos(leftRightHeadAngle)*10;;
+    eyeZ=eyeZ-sin(leftRightHeadAngle)*10;;
+  }
+  if (akey){
+ eyeX=eyeX-cos(leftRightHeadAngle+PI/2)*10;;
+    eyeZ=eyeZ-sin(leftRightHeadAngle+PI/2)*10;;   
+  }
+  if (dkey){
+    eyeX=eyeX-cos(leftRightHeadAngle-PI/2)*10;;
+    eyeZ=eyeZ-sin(leftRightHeadAngle-PI/2)*10;;    
+    
+  }
+  
+  leftRightHeadAngle=leftRightHeadAngle+(mouseX-pmouseX)*0.005;
+upDownHeadAngle=upDownHeadAngle+(mouseY-pmouseY)*0.005;
+
+if(upDownHeadAngle>PI/2.5)upDownHeadAngle=PI/2.5;
+if(upDownHeadAngle<-PI/2.5)upDownHeadAngle=-PI/2.5;
+  focusX=eyeX+cos(leftRightHeadAngle)*300;;
+  focusZ=eyeZ+sin(leftRightHeadAngle)*300;
+  focusY=eyeY+tan(upDownHeadAngle)*300;
  
-  if (wkey)eyeZ=eyeZ-3;
-  if (skey)eyeZ=eyeZ+3;
-  if (akey)eyeX=eyeX-3;
-  if (dkey)eyeX=eyeX+3;
-  
-  focusX=eyeX;
-   focusY=eyeY;
-      focusZ=eyeZ-300;
-  
 }
 
-void drawFocus(){
+void drawFocus() {
   pushMatrix();
-  translate(focusX,focusY,focusZ);
+  translate(focusX, focusY, focusZ);
   sphere(5);
-  
+
   popMatrix();
-  
 }
