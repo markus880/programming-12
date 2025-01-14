@@ -14,7 +14,7 @@ rotateY(roty);
   vertex(0, 0, 1, 0, 1);
   endShape();
   beginShape(QUADS);
-  texture(dirt);
+  texture(texture);
   //bottom
   vertex(0, 1, 0, 0, 0);
   vertex(1, 1, 0, 1, 0);
@@ -23,7 +23,7 @@ rotateY(roty);
   endShape();
 
   beginShape(QUADS);
-  texture(side);
+  texture(texture);
   //front
   vertex(0, 0, 1, 0, 0);
   vertex(1, 0, 1, 1, 0);
