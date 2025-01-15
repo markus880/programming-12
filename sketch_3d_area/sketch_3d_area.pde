@@ -7,6 +7,8 @@ color blue= #7092BE;
 boolean wkey, akey, skey, dkey;
 
 
+ArrayList<GameObject>objects;
+
 int gridsize;
 PImage map;
 
@@ -30,6 +32,8 @@ void setup() {
   noCursor();
   leftRightHeadAngle=radians(45);
 
+
+objects=new ArrayList <GameObject>();
   gridsize=100;
   map=loadImage("3dmap.png");
   dia=loadImage("Diamond.png");
@@ -54,6 +58,22 @@ void draw() {
   drawFocus();
   controlCamera();
   drawmap();
+  
+  int i=0;
+  while(i<objects.size()){
+    GameObject obj= objects.get(i);
+    obj.act();
+    obj.show();
+    if (obj.lives==0){
+      objects.remove(i);
+    }else{
+      i++;
+    }
+  }
+  
+  
+  
+  
 }
 
 
@@ -98,20 +118,20 @@ void controlCamera() {
     eyeZ=eyeZ+sin(leftRightHeadAngle)*10;
     ;
   }
-  if (skey) {
+  if (skey&&canmoveb()) {
 
     eyeX=eyeX-cos(leftRightHeadAngle)*10;
     ;
     eyeZ=eyeZ-sin(leftRightHeadAngle)*10;
     ;
   }
-  if (akey) {
+  if (akey&&canmovel()) {
     eyeX=eyeX-cos(leftRightHeadAngle+PI/2)*10;
     ;
     eyeZ=eyeZ-sin(leftRightHeadAngle+PI/2)*10;
     ;
   }
-  if (dkey) {
+  if (dkey&&canmover()) {
     eyeX=eyeX-cos(leftRightHeadAngle-PI/2)*10;
     ;
     eyeZ=eyeZ-sin(leftRightHeadAngle-PI/2)*10;
@@ -158,13 +178,60 @@ void drawmap() {
 }
 
 boolean canmovef() {
-  float fwdx, fwdy, fwdz;
-  int mapx, mapy;
-  fwdx=eyeX+cos(leftRightHeadAngle)*150;
-  fwdz=eyeZ+sin(leftRightHeadAngle)*150;
+  float fwdx, fwdy, fwdz,fwdlp;
+  int mapx, mapy,mapd;
+  fwdx=eyeX+cos(leftRightHeadAngle+radians(35))*200;
+    fwdlp=eyeX+cos(leftRightHeadAngle-radians(35))*200;
+  fwdz=eyeZ+sin(leftRightHeadAngle)*200;
   fwdy=eyeY;
   mapx=int(fwdx+2000)/gridsize;
   mapy=int(fwdz+2000)/gridsize;
+    mapd=int(fwdlp+2000)/gridsize;
+  if(map.get(mapx,mapy)==white&&map.get(mapd,mapy)==white){
+    return true;
+  }else{
+    return false;
+  }
+}
+boolean canmover() {
+  float rx, ry, rz;
+  int mapx, mapy;
+  rx=eyeX+cos(leftRightHeadAngle+radians(90))*200;
+  rz=eyeZ+sin(leftRightHeadAngle+radians(90))*200;
+  ry=eyeY;
+  mapx=int(rx+2000)/gridsize;
+  mapy=int(rz+2000)/gridsize;
+  
+  if(map.get(mapx,mapy)==white){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+boolean canmovel() {
+  float rx, ry, rz;
+  int mapx, mapy;
+  rx=eyeX+cos(leftRightHeadAngle-radians(90))*200;
+  rz=eyeZ+sin(leftRightHeadAngle-radians(90))*200;
+  ry=eyeY;
+  mapx=int(rx+2000)/gridsize;
+  mapy=int(rz+2000)/gridsize;
+  
+  if(map.get(mapx,mapy)==white){
+    return true;
+  }else{
+    return false;
+  }
+}
+boolean canmoveb() {
+  float rx, ry, rz;
+  int mapx, mapy;
+  rx=eyeX+cos(leftRightHeadAngle+radians(180))*200;
+  rz=eyeZ+sin(leftRightHeadAngle+radians(180))*200;
+  ry=eyeY;
+  mapx=int(rx+2000)/gridsize;
+  mapy=int(rz+2000)/gridsize;
   
   if(map.get(mapx,mapy)==white){
     return true;
