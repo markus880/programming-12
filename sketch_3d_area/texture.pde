@@ -1,10 +1,10 @@
-void boxy(float x, float y, float z,PImage texture,float size){
-strokeWeight(0);
-pushMatrix();
-  translate(x,y,z);
-scale(size);
-rotateX(rotx);
-rotateY(roty);
+void boxy(float x, float y, float z, PImage texture, float size) {
+  strokeWeight(0);
+  pushMatrix();
+  translate(x, y, z);
+  scale(size);
+  //rotateX(rotx);
+  //rotateY(roty);
   beginShape(QUADS);
   texture(texture);
   //top
@@ -57,7 +57,6 @@ rotateY(roty);
 
   endShape();
   popMatrix();
-
 }
 void mouseDragged() {
   rotx=rotx+(pmouseY-mouseY)*0.01;

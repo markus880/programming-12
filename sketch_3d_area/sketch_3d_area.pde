@@ -3,8 +3,10 @@ Robot rbt;
 float rotx, roty;
 color black=#000000;
 color white=#FFFFFF;
+color red=#ED1C24;
 color blue= #7092BE;
-boolean wkey, akey, skey, dkey;
+boolean wkey, akey, skey, dkey,qkey;
+int score;
 
 
 ArrayList<GameObject>objects;
@@ -50,15 +52,16 @@ objects=new ArrayList <GameObject>();
 
 
 void draw() {
+  println(score);
   background(0);
   pointLight(255, 255, 255, eyeX, eyeY, eyeZ);
   camera(eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ);
   drawFloor(-2000, 2000, height, gridsize);
-  drawFloor(-2000, 2000, height-gridsize*3, gridsize);
+  //drawFloor(-2000, 2000, height-gridsize*3, gridsize);
   drawFocus();
   controlCamera();
   drawmap();
-  
+  shoot();
   int i=0;
   while(i<objects.size()){
     GameObject obj= objects.get(i);
@@ -78,7 +81,7 @@ void draw() {
 
 
 void keyPressed() {
-
+  if ( key == 'q' || key =='Q') qkey= true;
   if ( key == 'w' || key =='W') wkey= true;
   if ( key == 's' || key =='S')skey=true;
   if ( key == 'd' || key =='D') dkey= true;
@@ -87,6 +90,7 @@ void keyPressed() {
 
 void keyReleased() {
 
+   if ( key == 'q' || key =='Q') qkey= false;
   if ( key == 'w' || key =='W') wkey= false;
   if ( key == 's' || key =='S')skey=false;
   if ( key == 'd' || key =='D') dkey= false;
@@ -172,10 +176,14 @@ void drawmap() {
       if (c==black) {
         boxy(x*gridsize-2000, height-gridsize, y*gridsize-2000, dirt, gridsize);
         boxy(x*gridsize-2000, height-gridsize*2, y*gridsize-2000, dirt, gridsize);
+      }if(c==red){
+        boxy(x*gridsize-2000, height-gridsize, y*gridsize-2000, dirt, gridsize);
+      }
+        
       }
     }
   }
-}
+
 
 boolean canmovef() {
   float fwdx, fwdy, fwdz,fwdlp;
@@ -238,4 +246,15 @@ boolean canmoveb() {
   }else{
     return false;
   }
+}
+
+void shoot(){
+  
+if (qkey==true){
+  objects.add(new bullet());
+
+  
+}
+ 
+  
 }
