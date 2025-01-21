@@ -22,14 +22,16 @@ class bullet extends GameObject {
     if (map.get(hitx, hity)==red) {
       lives=0;
       score++;
+
       for (int i=0; i<5; i++) {
         objects.add(new particle(loc));
       }
-    } if(map.get(hitx, hity)==red) {
+     if(map.get(hitx, hity)==black) {
       lives=0;
       for (int i=0; i<5; i++) {
         objects.add(new particle(loc));
       }
     }
   }
+}
 }

@@ -1,6 +1,6 @@
 import java.awt.Robot;
 Robot rbt;
-float rotx, roty;
+float rotx, roty,x1,y1,z1;
 color black=#000000;
 color white=#FFFFFF;
 color red=#ED1C24;
@@ -8,13 +8,13 @@ color blue= #7092BE;
 boolean wkey, akey, skey, dkey,qkey;
 int score;
 
-
+PVector zz;
 ArrayList<GameObject>objects;
 
 int gridsize;
 PImage map;
 
-PImage dia, dirt, top, side;
+PImage dia, dirt, top, side,stone ;
 
 float eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ, leftRightHeadAngle, upDownHeadAngle;
 void setup() {
@@ -33,7 +33,8 @@ void setup() {
   tiltZ=0;
   noCursor();
   leftRightHeadAngle=radians(45);
-
+  
+zz=new PVector(0,1000,0);
 
 objects=new ArrayList <GameObject>();
   gridsize=100;
@@ -42,6 +43,7 @@ objects=new ArrayList <GameObject>();
   top=loadImage("GrassBlockTop.png");
   dirt=loadImage("dirt.png");
   side=loadImage("Grass_Block_Side.png");
+  stone=loadImage("Stone_Bricks.png");
   try {
     rbt=new Robot();
   }
@@ -52,6 +54,7 @@ objects=new ArrayList <GameObject>();
 
 
 void draw() {
+  
   println(score);
   background(0);
   pointLight(255, 255, 255, eyeX, eyeY, eyeZ);
@@ -72,6 +75,9 @@ void draw() {
     }else{
       i++;
     }
+  }
+  for(int t=0;t<1;t++){
+     
   }
   
   
@@ -177,8 +183,17 @@ void drawmap() {
         boxy(x*gridsize-2000, height-gridsize, y*gridsize-2000, dirt, gridsize);
         boxy(x*gridsize-2000, height-gridsize*2, y*gridsize-2000, dirt, gridsize);
       }if(c==red){
-        boxy(x*gridsize-2000, height-gridsize, y*gridsize-2000, dirt, gridsize);
+        zz.x=x*gridsize-2000;
+        zz.z=y*gridsize-2000;
+        zz.y=height-gridsize;
+       // zz.z=z;
+objects.add(new targ(zz));
+  
       }
+    
+    
+        
+        
         
       }
     }

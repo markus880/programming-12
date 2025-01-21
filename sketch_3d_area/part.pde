@@ -4,19 +4,21 @@ class particle extends GameObject{
   
   particle(PVector loc){
   super(loc.x,loc.y,loc.z,10);
-  k= random (-4,4);
+ lives=100;
   }
     void show(){
-    for(int i=0;i<200;i++){
+ 
  boxy(loc.x, loc.y, loc.z, dia, 10);
  boxy(loc.x, loc.y, loc.z, dia, 10);
  boxy(loc.x, loc.y, loc.z, dia, 10);
  boxy(loc.x, loc.y, loc.z, dia, 10);
  boxy(loc.x, loc.y, loc.z, dia, 10);
-    }
+    
   }
   void act(){
+    lives--;
      if(loc.y<height-2){
+        k= random (-4,4);
    loc.x=loc.x+k;
    loc.z=loc.z+k;
   
