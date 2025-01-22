@@ -3,7 +3,7 @@ class GameObject{
  PVector loc;
  float size;
  float lives;
- boolean all;
+
  
  GameObject(){
    loc=new PVector(0,0,0);

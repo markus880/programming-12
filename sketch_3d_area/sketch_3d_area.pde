@@ -7,9 +7,18 @@ color red=#ED1C24;
 color blue= #7092BE;
 boolean wkey, akey, skey, dkey,qkey;
 int score;
-
+boolean all;
 PVector zz;
 ArrayList<GameObject>objects;
+
+PImage[] gif;
+
+
+
+
+
+
+
 
 int gridsize;
 PImage map;
@@ -50,12 +59,28 @@ objects=new ArrayList <GameObject>();
   catch(Exception e) {
     e.printStackTrace();
   }
+  
+  
+  
+  
+   gif=new PImage[50];
+  for (int n=0; n<50; n++) {
+    gif[n]= loadImage ("frame_"+n+"_delay-0.04s.gif");
+    gif[n].resize(gridsize, gridsize);
+  } 
+  
+  
+  
+  
+  
+  
+  
 }
 
 
 void draw() {
   
-  println(score);
+
   background(0);
   pointLight(255, 255, 255, eyeX, eyeY, eyeZ);
   camera(eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ);

@@ -23,6 +23,9 @@ class bullet extends GameObject {
       lives=0;
       score++;
 
+all=true;
+      
+    
       for (int i=0; i<5; i++) {
         objects.add(new particle(loc));
       }
