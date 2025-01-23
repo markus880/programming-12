@@ -14,12 +14,12 @@ ArrayList<GameObject>objects;
 PImage[] gif;
 
 
+int jk;
 
 
 
 
-
-
+ int lmnop;
 int gridsize;
 PImage map;
 
@@ -28,6 +28,7 @@ PImage dia, dirt, top, side,stone ;
 float eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ, leftRightHeadAngle, upDownHeadAngle;
 void setup() {
   //size(1440,840,P3D);
+   lmnop=0;
   fullScreen(P3D);
   textureMode(NORMAL);
   wkey=skey=akey=dkey=false;
@@ -80,7 +81,7 @@ objects=new ArrayList <GameObject>();
 
 void draw() {
   
-
+//println(jk);
   background(0);
   pointLight(255, 255, 255, eyeX, eyeY, eyeZ);
   camera(eyeX, eyeY, eyeZ, focusX, focusY, focusZ, tiltX, tiltY, tiltZ);
@@ -289,12 +290,13 @@ boolean canmoveb() {
 }
 
 void shoot(){
+ 
   
-if (qkey==true){
+if (qkey==true&&lmnop<20){
   objects.add(new bullet());
-
+lmnop=40;
   
 }
- 
+ lmnop--;
   
 }
