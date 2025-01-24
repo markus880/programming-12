@@ -229,9 +229,9 @@ objects.add(new targ(zz));
 boolean canmovef() {
   float fwdx, fwdy, fwdz,fwdlp;
   int mapx, mapy,mapd;
-  fwdx=eyeX+cos(leftRightHeadAngle+radians(35))*200;
-    fwdlp=eyeX+cos(leftRightHeadAngle-radians(35))*200;
-  fwdz=eyeZ+sin(leftRightHeadAngle)*200;
+  fwdx=eyeX+cos(leftRightHeadAngle+radians(35))*210;
+    fwdlp=eyeX+cos(leftRightHeadAngle-radians(35))*210;
+  fwdz=eyeZ+sin(leftRightHeadAngle)*210;
   fwdy=eyeY;
   mapx=int(fwdx+2000)/gridsize;
   mapy=int(fwdz+2000)/gridsize;
@@ -243,15 +243,20 @@ boolean canmovef() {
   }
 }
 boolean canmover() {
-  float rx, ry, rz;
-  int mapx, mapy;
-  rx=eyeX+cos(leftRightHeadAngle+radians(90))*200;
-  rz=eyeZ+sin(leftRightHeadAngle+radians(90))*200;
+  float rx, ry, rz,rl,rr;
+  int mapx, mapy,maps,mapl;
+   rr=eyeX+cos(leftRightHeadAngle+radians(90))*210;
+  rx=eyeX+cos(leftRightHeadAngle+radians(45))*210;
+   rl=eyeX+cos(leftRightHeadAngle+radians(115))*210;
+  rz=eyeZ+sin(leftRightHeadAngle+radians(90))*210;
   ry=eyeY;
   mapx=int(rx+2000)/gridsize;
   mapy=int(rz+2000)/gridsize;
+  maps  =int(rl+2000)/gridsize;
+  mapl=int(rr+2000)/gridsize;
   
-  if(map.get(mapx,mapy)==white){
+  
+  if(map.get(mapx,mapy)==white && map.get(maps,mapy)==white && map.get(mapl,mapy)==white){
     return true;
   }else{
     return false;
@@ -259,30 +264,40 @@ boolean canmover() {
 }
 
 boolean canmovel() {
-  float rx, ry, rz;
-  int mapx, mapy;
-  rx=eyeX+cos(leftRightHeadAngle-radians(90))*200;
-  rz=eyeZ+sin(leftRightHeadAngle-radians(90))*200;
+   float rx, ry, rz,rl,rr;
+  int mapx, mapy,maps,mapl;
+   rr=eyeX+cos(leftRightHeadAngle-radians(90))*210;
+  rx=eyeX+cos(leftRightHeadAngle-radians(65))*210;
+   rl=eyeX+cos(leftRightHeadAngle-radians(135))*210;
+  rz=eyeZ+sin(leftRightHeadAngle-radians(90))*210;
   ry=eyeY;
   mapx=int(rx+2000)/gridsize;
   mapy=int(rz+2000)/gridsize;
+  maps  =int(rl+2000)/gridsize;
+  mapl=int(rr+2000)/gridsize;
   
-  if(map.get(mapx,mapy)==white){
+  
+  if(map.get(mapx,mapy)==white && map.get(maps,mapy)==white && map.get(mapl,mapy)==white){
     return true;
   }else{
     return false;
   }
 }
 boolean canmoveb() {
-  float rx, ry, rz;
-  int mapx, mapy;
-  rx=eyeX+cos(leftRightHeadAngle+radians(180))*200;
-  rz=eyeZ+sin(leftRightHeadAngle+radians(180))*200;
+   float rx, ry, rz,rl,rr;
+  int mapx, mapy,maps,mapl;
+   rr=eyeX+cos(leftRightHeadAngle-radians(180))*210;
+  rx=eyeX+cos(leftRightHeadAngle-radians(155))*210;
+   rl=eyeX+cos(leftRightHeadAngle-radians(205))*210;
+  rz=eyeZ+sin(leftRightHeadAngle-radians(90))*210;
   ry=eyeY;
   mapx=int(rx+2000)/gridsize;
   mapy=int(rz+2000)/gridsize;
+  maps  =int(rl+2000)/gridsize;
+  mapl=int(rr+2000)/gridsize;
   
-  if(map.get(mapx,mapy)==white){
+  
+  if(map.get(mapx,mapy)==white && map.get(maps,mapy)==white && map.get(mapl,mapy)==white){
     return true;
   }else{
     return false;

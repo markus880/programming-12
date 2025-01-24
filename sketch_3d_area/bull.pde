@@ -29,6 +29,9 @@ class bullet extends GameObject {
 
       for (int i=0; i<5; i++) {
         objects.add(new particle(loc));
+         objects.add(new particle(loc));
+          objects.add(new particle(loc));
+           objects.add(new particle(loc));
       }
       loc.x=1500;
       if(km<5){
@@ -41,12 +44,18 @@ class bullet extends GameObject {
       lives=0;
       for (int k=0; k<5; k++) {
         objects.add(new particle(loc));
+         objects.add(new particle(loc));
+          objects.add(new particle(loc));
+           objects.add(new particle(loc));
       }
      }
         if(map.get(hitx, hity)==blue) {
       lives=0;
       for (int d=0; d<5; d++) {
         objects.add(new particle(loc));
+         objects.add(new particle(loc));
+          objects.add(new particle(loc));
+           objects.add(new particle(loc));
       }
     }
   
